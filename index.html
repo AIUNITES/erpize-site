@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Primary Meta Tags -->
-  <title>ERPize - The ERP Magazine | News, Tutorials & Insights for Enterprise Systems</title>
-  <meta name="title" content="ERPize - The ERP Magazine">
-  <meta name="description" content="Your source for ERP news, tutorials, and insights. Covering Jenzabar, SAP, Oracle, and more. Tips, best practices, and industry trends for ERP professionals.">
-  <meta name="keywords" content="ERP magazine, enterprise resource planning, Jenzabar, SAP, Oracle, ERP news, ERP tutorials, higher education ERP, SQL tips, database management">
+  <title>ERPize - Talk to Your Data | AI-Powered Business Intelligence</title>
+  <meta name="title" content="ERPize - Talk to Your Data">
+  <meta name="description" content="Ask questions in plain English, get answers from your data. AI-powered queries, forecasts, and reports for your ERP, database, or spreadsheets.">
+  <meta name="keywords" content="AI analytics, natural language query, business intelligence, data AI, ERP analytics, SQL AI, forecast AI, dashboard AI">
   <meta name="author" content="ERPize">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://erpize.com/">
@@ -16,222 +16,832 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://erpize.com/">
-  <meta property="og:title" content="ERPize - The ERP Magazine">
-  <meta property="og:description" content="Your source for ERP news, tutorials, and insights. Tips and best practices for ERP professionals.">
+  <meta property="og:title" content="ERPize - Talk to Your Data">
+  <meta property="og:description" content="Ask questions in plain English, get answers from your data.">
   <meta property="og:image" content="https://erpize.com/images/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:site_name" content="ERPize">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://erpize.com/">
-  <meta name="twitter:title" content="ERPize - The ERP Magazine">
-  <meta name="twitter:description" content="Your source for ERP news, tutorials, and insights.">
-  <meta name="twitter:image" content="https://erpize.com/images/og-image.png">
+  <meta name="twitter:title" content="ERPize - Talk to Your Data">
+  <meta name="twitter:description" content="AI-powered business intelligence. Ask questions, get answers.">
   
   <!-- Theme -->
   <meta name="theme-color" content="#06b6d4">
-  
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "ERPize",
-    "url": "https://erpize.com/",
-    "description": "The ERP Magazine - News, tutorials, and insights for enterprise systems",
-    "publisher": {
-      "@type": "Organization",
-      "name": "ERPize"
-    }
-  }
-  </script>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>">
+  
+  <style>
+    :root {
+      --bg-dark: #0a0a0f;
+      --bg-card: #12121a;
+      --bg-card-hover: #1a1a24;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0b0;
+      --accent: #06b6d4;
+      --accent-dark: #0891b2;
+      --accent-glow: rgba(6, 182, 212, 0.3);
+      --purple: #8b5cf6;
+      --green: #10b981;
+      --orange: #f59e0b;
+      --red: #ef4444;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 36px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 15, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 16px 0;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+    .nav-logo .icon { color: var(--accent); }
+    .nav-logo .text { color: var(--text-primary); }
+    .nav-logo .accent { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-cta {
+      background: var(--accent) !important;
+      color: #000 !important;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .nav-cta:hover { background: var(--accent-dark) !important; }
+    
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 140px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      color: var(--accent);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      max-width: 500px;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px var(--accent-glow);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    
+    /* Demo Badge */
+    .demo-badge {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+    
+    /* Chat Demo */
+    .hero-demo {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 24px;
+      position: relative;
+    }
+    .chat-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 20px;
+    }
+    .chat-avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+    .chat-title {
+      font-weight: 600;
+    }
+    .chat-status {
+      font-size: 0.8rem;
+      color: var(--green);
+    }
+    .chat-messages {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .chat-message {
+      max-width: 85%;
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-size: 0.95rem;
+    }
+    .chat-message.user {
+      background: var(--accent);
+      color: #000;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .chat-message.ai {
+      background: rgba(255,255,255,0.05);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .chat-message.ai .highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .chat-input {
+      display: flex;
+      gap: 12px;
+    }
+    .chat-input input {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+    .chat-input input::placeholder { color: var(--text-secondary); }
+    .chat-input button {
+      background: var(--accent);
+      border: none;
+      border-radius: 12px;
+      padding: 14px 20px;
+      color: #000;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    
+    /* Products Section */
+    .section {
+      padding: 100px 0;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .section-badge {
+      display: inline-block;
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      color: var(--purple);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .section-header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Product Cards */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-card:hover {
+      border-color: rgba(255,255,255,0.1);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .product-card.featured {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, rgba(6,182,212,0.1), transparent);
+    }
+    .product-card.featured::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--accent);
+      color: #000;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .product-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      margin-bottom: 20px;
+    }
+    .product-card:nth-child(2) .product-icon { background: linear-gradient(135deg, var(--purple), #a855f7); }
+    .product-card:nth-child(3) .product-icon { background: linear-gradient(135deg, var(--green), #34d399); }
+    .product-card:nth-child(4) .product-icon { background: linear-gradient(135deg, var(--orange), #fb923c); }
+    .product-card h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .product-card p {
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+    .product-features {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .product-feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .product-feature::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .product-cta {
+      margin-top: 24px;
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      color: var(--text-primary);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .product-cta:hover {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+    }
+    
+    /* Example Queries */
+    .queries-section {
+      background: var(--bg-card);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .queries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .query-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.2s;
+    }
+    .query-card:hover {
+      border-color: var(--accent);
+      background: rgba(6,182,212,0.05);
+    }
+    .query-text {
+      font-family: 'Monaco', monospace;
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .query-result {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .query-result strong {
+      color: var(--text-primary);
+    }
+    
+    /* Use Cases */
+    .use-cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .use-case {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .use-case:hover {
+      border-color: rgba(255,255,255,0.1);
+      transform: translateY(-4px);
+    }
+    .use-case-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+    .use-case h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    .use-case p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 100px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-content {
+      position: relative;
+      z-index: 1;
+    }
+    .cta-content h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .cta-content p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-bottom: 32px;
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--bg-card);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 60px 0 30px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand p {
+      color: var(--text-secondary);
+      margin-top: 16px;
+      font-size: 0.95rem;
+    }
+    .footer-links h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+    .footer-links a {
+      display: block;
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    
+    /* Responsive */
+    @media (max-width: 968px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero-demo { margin-top: 40px; }
+      .use-cases-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    
+    /* AIUNITES Webring */
+    .aiunites-bar{position:fixed;top:0;left:0;right:0;z-index:10000;background:linear-gradient(90deg,#0a0a0f,#1a1a2e);border-bottom:1px solid rgba(99,102,241,.3);padding:8px 0;font-size:12px}
+    .aiunites-bar-content{max-width:1400px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:12px;overflow-x:auto;scrollbar-width:none}
+    .aiunites-bar-content::-webkit-scrollbar{display:none}
+    .aiunites-bar a{color:rgba(255,255,255,.7);text-decoration:none;white-space:nowrap;transition:color .2s}
+    .aiunites-bar a:hover{color:#fff}
+    .aiunites-bar-brand{color:#6366f1!important;font-weight:600}
+    .aiunites-bar-divider{color:rgba(255,255,255,.2)}
+    body{padding-top:36px!important}
+    
+    /* Feedback Button */
+    .feedback-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      color: #000;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px var(--accent-glow);
+      transition: all 0.3s;
+      z-index: 9999;
+    }
+    .feedback-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--accent-glow);
+    }
+  </style>
 </head>
 <body>
   <!-- AIUNITES Webring -->
-  <style>.aiunites-bar{position:fixed;top:0;left:0;right:0;z-index:10000;background:linear-gradient(90deg,#0a0a0f,#1a1a2e);border-bottom:1px solid rgba(99,102,241,.3);padding:8px 0;font-size:12px}.aiunites-bar-content{max-width:1400px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:12px;overflow-x:auto;scrollbar-width:none}.aiunites-bar-content::-webkit-scrollbar{display:none}.aiunites-bar a{color:rgba(255,255,255,.7);text-decoration:none;white-space:nowrap;transition:color .2s}.aiunites-bar a:hover{color:#fff}.aiunites-bar-brand{color:#6366f1!important;font-weight:600}.aiunites-bar-brand:hover{color:#818cf8!important}.aiunites-bar-divider{color:rgba(255,255,255,.2)}body{padding-top:36px!important}.nav{top:36px!important}</style>
-  <div class="aiunites-bar"><div class="aiunites-bar-content"><a href="https://aiunites.github.io/aiunites-site/" class="aiunites-bar-brand">◆ AIUNITES</a><span class="aiunites-bar-divider">|</span><a href="https://aiunites.github.io/aizines-app/">AIZines</a><a href="https://aiunites.github.io/aibyjob-demo/">AIByJob</a><a href="https://aiunites.github.io/redomy-demo/">Redomy</a><a href="https://aiunites.github.io/videobate-site/">VideoBate</a><a href="https://aiunites.github.io/furnishthings-site/">FurnishThings</a><a href="https://aiunites.github.io/bizstry-site/">BizStry</a><a href="https://aiunites.github.io/aiyhwh-site/">AI YHWH</a><a href="https://aiunites.github.io/cloudsion-site/">Cloudsion</a><a href="https://aiunites.github.io/gameatica-site/">Gameatica</a><a href="https://aiunites.github.io/uptownit-site/">UptownIT</a><a href="https://aiunites.github.io/inthisworld-site/">InThisWorld</a><a href="https://aiunites.github.io/erpise-site/">ERPise</a><a href="https://aiunites.github.io/cosmostheopera-site/">🌌 COSMOS</a></div></div>
-  <script>(function(){if(location.protocol==='file:'||location.hostname==='localhost'||location.hostname==='127.0.0.1'){document.querySelectorAll('.aiunites-bar a').forEach(a=>{a.href=a.href.replace('https://aiunites.github.io/','../')+'index.html';});}})()</script>
+  <div class="aiunites-bar">
+    <div class="aiunites-bar-content">
+      <a href="https://aiunites.github.io/aiunites-site/" class="aiunites-bar-brand">◆ AIUNITES</a>
+      <span class="aiunites-bar-divider">|</span>
+      <a href="https://aiunites.github.io/aibyjob-demo/">AIByJob</a>
+      <a href="https://aiunites.github.io/videobate-site/">VideoBate</a>
+      <a href="https://aiunites.github.io/erpise-site/">ERPise</a>
+      <a href="https://aiunites.github.io/gameatica-site/">Gameatica</a>
+    </div>
+  </div>
 
   <!-- Navigation -->
   <nav class="nav">
-    <a href="#" class="logo">ERP<span>ize</span></a>
-    <div class="nav-links">
-      <a href="#articles">Articles</a>
-      <a href="#categories">Topics</a>
-      <a href="#newsletter">Subscribe</a>
-      <a href="https://erpise.com" target="_blank">ERPise Consulting →</a>
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <span class="icon">💬</span>
+        <span class="text">ERP<span class="accent">ize</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#products">Products</a>
+        <a href="#examples">Examples</a>
+        <a href="#use-cases">Use Cases</a>
+        <a href="#contact" class="nav-cta">Get Started</a>
+      </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <div style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; display: inline-block; margin-bottom: 12px;">🚧 Demo / Pre-Launch Preview</div>
-      <div class="hero-badge">The ERP Magazine</div>
-      <h1>Stay Ahead in <span class="gradient-text">Enterprise Systems</span></h1>
-      <p class="hero-subtitle">News, tutorials, and insights for ERP professionals. From Jenzabar to SAP, we cover the systems that power institutions.</p>
-      <div class="hero-cta">
-        <a href="#newsletter" class="btn-primary btn-large">Subscribe Free</a>
-        <a href="#articles" class="btn-secondary btn-large">Read Articles</a>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="hero-card">
-        <div class="hero-card-category">Tutorial</div>
-        <div class="hero-card-title">10 SQL Queries Every DBA Should Know</div>
-        <div class="hero-card-meta">📖 8 min read</div>
-      </div>
-      <div class="hero-card">
-        <div class="hero-card-category">News</div>
-        <div class="hero-card-title">Jenzabar Announces Cloud Migration Tools</div>
-        <div class="hero-card-meta">📰 3 min read</div>
-      </div>
-      <div class="hero-card">
-        <div class="hero-card-category">Guide</div>
-        <div class="hero-card-title">IPEDS Reporting: A Complete Walkthrough</div>
-        <div class="hero-card-meta">📚 15 min read</div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="demo-badge">🚧 Demo / Pre-Launch Preview</div>
+          <div class="hero-badge">🤖 AI Data Intelligence</div>
+          <h1>Talk to<br><span class="gradient">Your Data</span></h1>
+          <p class="hero-subtitle">Ask questions in plain English. Get answers, forecasts, and reports from your ERP, database, or spreadsheets instantly.</p>
+          <div class="hero-cta">
+            <a href="#demo" class="btn btn-primary">Try Demo</a>
+            <a href="#products" class="btn btn-secondary">View Products</a>
+          </div>
+        </div>
+        <div class="hero-demo">
+          <div class="chat-header">
+            <div class="chat-avatar">🤖</div>
+            <div>
+              <div class="chat-title">ERPize Assistant</div>
+              <div class="chat-status">● Connected to your data</div>
+            </div>
+          </div>
+          <div class="chat-messages">
+            <div class="chat-message user">Show me overdue invoices over $10k</div>
+            <div class="chat-message ai">Found <span class="highlight">23 invoices</span> totaling <span class="highlight">$847,250</span>. The oldest is 45 days past due from Acme Corp. Want me to generate a collection report?</div>
+            <div class="chat-message user">Yes, and forecast next month's revenue</div>
+            <div class="chat-message ai">Based on current pipeline, I predict <span class="highlight">$2.3M revenue</span> next month (↑12% vs last month). Report generated and ready for download.</div>
+          </div>
+          <div class="chat-input">
+            <input type="text" placeholder="Ask anything about your data...">
+            <button>→</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Categories Section -->
-  <section class="section section-dark" id="categories">
+  <!-- Products Section -->
+  <section class="section" id="products">
     <div class="container">
       <div class="section-header">
-        <span class="section-badge">Topics</span>
-        <h2>What We Cover</h2>
-        <p>Deep dives into the systems and skills that matter</p>
+        <span class="section-badge">Products</span>
+        <h2>Data Intelligence Suite</h2>
+        <p>Questions in. Answers out. No SQL required.</p>
       </div>
-      <div class="categories-grid">
-        <div class="category-card">
-          <div class="category-icon">🗄️</div>
-          <h3>Jenzabar</h3>
-          <p>J1 Desktop, CX, EX tips and tutorials</p>
+      <div class="products-grid">
+        <div class="product-card featured">
+          <div class="product-icon">💬</div>
+          <h3>QueryAI</h3>
+          <p>Ask questions in plain English. Get answers from your database without writing SQL.</p>
+          <div class="product-features">
+            <span class="product-feature">Natural language to SQL</span>
+            <span class="product-feature">Works with any database</span>
+            <span class="product-feature">Instant visualizations</span>
+            <span class="product-feature">Query history & saving</span>
+          </div>
+          <button class="product-cta">Try QueryAI →</button>
         </div>
-        <div class="category-card">
-          <div class="category-icon">📊</div>
-          <h3>SQL & Databases</h3>
-          <p>Queries, optimization, best practices</p>
+        
+        <div class="product-card">
+          <div class="product-icon">📈</div>
+          <h3>ForecastAI</h3>
+          <p>Predict revenue, inventory needs, enrollment trends, and more using your historical data.</p>
+          <div class="product-features">
+            <span class="product-feature">Revenue forecasting</span>
+            <span class="product-feature">Demand prediction</span>
+            <span class="product-feature">Trend analysis</span>
+            <span class="product-feature">Confidence intervals</span>
+          </div>
+          <button class="product-cta">Try ForecastAI →</button>
         </div>
-        <div class="category-card">
-          <div class="category-icon">📋</div>
-          <h3>Compliance</h3>
-          <p>IPEDS, NCAA, federal reporting</p>
+        
+        <div class="product-card">
+          <div class="product-icon">📊</div>
+          <h3>ReportAI</h3>
+          <p>Generate compliance reports, executive summaries, and dashboards automatically.</p>
+          <div class="product-features">
+            <span class="product-feature">IPEDS/NCAA reports</span>
+            <span class="product-feature">Executive dashboards</span>
+            <span class="product-feature">Scheduled generation</span>
+            <span class="product-feature">Multiple formats</span>
+          </div>
+          <button class="product-cta">Try ReportAI →</button>
         </div>
-        <div class="category-card">
-          <div class="category-icon">🔧</div>
-          <h3>Automation</h3>
-          <p>PowerShell, scripts, workflows</p>
+        
+        <div class="product-card">
+          <div class="product-icon">🔔</div>
+          <h3>AlertAI</h3>
+          <p>Proactive anomaly detection. Get notified before problems become crises.</p>
+          <div class="product-features">
+            <span class="product-feature">Anomaly detection</span>
+            <span class="product-feature">Threshold alerts</span>
+            <span class="product-feature">Trend warnings</span>
+            <span class="product-feature">Slack/email/SMS</span>
+          </div>
+          <button class="product-cta">Try AlertAI →</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Articles Section -->
-  <section class="section" id="articles">
+  <!-- Example Queries -->
+  <section class="section queries-section" id="examples">
     <div class="container">
       <div class="section-header">
-        <span class="section-badge">Latest</span>
-        <h2>Featured Articles</h2>
-        <p>Fresh insights for ERP professionals</p>
+        <span class="section-badge">Examples</span>
+        <h2>Ask Anything</h2>
+        <p>Real questions, real answers from your data</p>
       </div>
-      <div class="articles-grid">
-        <div class="article-card">
-          <div class="article-image" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">📊</div>
-          <div class="article-content">
-            <div class="article-category">SQL Tips</div>
-            <h3 class="article-title">Mastering SUBSTRING and CHARINDEX in T-SQL</h3>
-            <p class="article-excerpt">String manipulation techniques every database developer needs to know for parsing complex data.</p>
-            <div class="article-meta">
-              <span>📖 Coming Soon</span>
-              <span>5 min read</span>
-            </div>
-          </div>
+      <div class="queries-grid">
+        <div class="query-card">
+          <div class="query-text">"Which customers haven't ordered in 90 days?"</div>
+          <div class="query-result">→ <strong>47 customers</strong> identified, sorted by lifetime value. Export ready.</div>
         </div>
-        <div class="article-card">
-          <div class="article-image" style="background: linear-gradient(135deg, #10b981, #059669);">🗄️</div>
-          <div class="article-content">
-            <div class="article-category">Jenzabar</div>
-            <h3 class="article-title">Understanding the Jenzabar Charges System</h3>
-            <p class="article-excerpt">A deep dive into how student billing works in J1 Desktop, from transaction types to validation.</p>
-            <div class="article-meta">
-              <span>📖 Coming Soon</span>
-              <span>12 min read</span>
-            </div>
-          </div>
+        <div class="query-card">
+          <div class="query-text">"Compare Q4 revenue vs last year by region"</div>
+          <div class="query-result">→ Chart generated. <strong>Northeast up 23%</strong>, Southwest down 8%.</div>
         </div>
-        <div class="article-card">
-          <div class="article-image" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">📋</div>
-          <div class="article-content">
-            <div class="article-category">Compliance</div>
-            <h3 class="article-title">IPEDS Fall Enrollment: Step-by-Step Guide</h3>
-            <p class="article-excerpt">Everything you need to prepare accurate fall enrollment data for federal reporting.</p>
-            <div class="article-meta">
-              <span>📖 Coming Soon</span>
-              <span>10 min read</span>
-            </div>
-          </div>
+        <div class="query-card">
+          <div class="query-text">"Show students at risk of not graduating"</div>
+          <div class="query-result">→ <strong>34 students</strong> flagged based on GPA, credits, and attendance patterns.</div>
         </div>
-        <div class="article-card">
-          <div class="article-image" style="background: linear-gradient(135deg, #f59e0b, #d97706);">🔧</div>
-          <div class="article-content">
-            <div class="article-category">Automation</div>
-            <h3 class="article-title">PowerShell Scripts for Jenzabar Admins</h3>
-            <p class="article-excerpt">Automate common tasks with these ready-to-use PowerShell scripts and templates.</p>
-            <div class="article-meta">
-              <span>📖 Coming Soon</span>
-              <span>8 min read</span>
-            </div>
-          </div>
+        <div class="query-card">
+          <div class="query-text">"What's our inventory turnover by category?"</div>
+          <div class="query-result">→ Electronics: <strong>8.2x</strong>, Furniture: 3.1x, Apparel: 5.7x. Below target highlighted.</div>
         </div>
-        <div class="article-card">
-          <div class="article-image" style="background: linear-gradient(135deg, #ef4444, #dc2626);">💰</div>
-          <div class="article-content">
-            <div class="article-category">Billing</div>
-            <h3 class="article-title">Detecting Duplicate Student Charges</h3>
-            <p class="article-excerpt">SQL queries and techniques for finding and fixing billing anomalies in your system.</p>
-            <div class="article-meta">
-              <span>📖 Coming Soon</span>
-              <span>6 min read</span>
-            </div>
-          </div>
+        <div class="query-card">
+          <div class="query-text">"Build me a dashboard for AP aging"</div>
+          <div class="query-result">→ Dashboard created with 30/60/90 buckets, top vendors, and trend line.</div>
         </div>
-        <div class="article-card">
-          <div class="article-image" style="background: linear-gradient(135deg, #ec4899, #db2777);">🎓</div>
-          <div class="article-content">
-            <div class="article-category">Higher Ed</div>
-            <h3 class="article-title">ERP Trends in Higher Education 2026</h3>
-            <p class="article-excerpt">What's changing in campus technology and how to prepare your institution.</p>
-            <div class="article-meta">
-              <span>📖 Coming Soon</span>
-              <span>7 min read</span>
-            </div>
-          </div>
+        <div class="query-card">
+          <div class="query-text">"Predict next semester's enrollment"</div>
+          <div class="query-result">→ Forecast: <strong>2,847 students</strong> (±5%). 12% increase from applications trend.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Newsletter Section -->
-  <section class="section" id="newsletter">
+  <!-- Use Cases -->
+  <section class="section" id="use-cases">
     <div class="container">
-      <div class="newsletter">
-        <h2>Get ERPize in Your Inbox</h2>
-        <p>Weekly tips, tutorials, and news for ERP professionals. No spam, ever.</p>
-        <form class="newsletter-form" action="https://docs.google.com/forms/d/e/1FAIpQLSeQUi49AdTBRjetz5MDFQgMIkm9-vOMb_ARKwYEz41j_Nfiwg/formResponse" method="POST" target="_blank">
-          <input type="hidden" name="entry.2053726945" value="ERPize Newsletter">
-          <input type="email" name="entry.904300305" placeholder="you@institution.edu" required>
-          <button type="submit">Subscribe</button>
+      <div class="section-header">
+        <span class="section-badge">Industries</span>
+        <h2>Built For Your Industry</h2>
+        <p>Pre-trained on domain-specific data patterns</p>
+      </div>
+      <div class="use-cases-grid">
+        <div class="use-case">
+          <div class="use-case-icon">🎓</div>
+          <h3>Higher Education</h3>
+          <p>Student records, enrollment, financial aid, IPEDS compliance</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">💰</div>
+          <h3>Finance & Accounting</h3>
+          <p>AP/AR aging, cash flow, revenue recognition, audit prep</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">📦</div>
+          <h3>Supply Chain</h3>
+          <p>Inventory levels, demand forecasting, vendor performance</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">🏥</div>
+          <h3>Healthcare</h3>
+          <p>Patient analytics, billing patterns, compliance reporting</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">🛒</div>
+          <h3>Retail</h3>
+          <p>Sales trends, customer segmentation, seasonal forecasting</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">🏭</div>
+          <h3>Manufacturing</h3>
+          <p>Production metrics, quality tracking, maintenance prediction</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" id="contact">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Talk to Your Data?</h2>
+        <p>Join the waitlist for early access and special pricing.</p>
+        <form style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; max-width: 500px; margin: 0 auto;">
+          <input type="email" placeholder="you@company.com" style="flex: 1; min-width: 250px; padding: 14px 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: #fff; font-size: 1rem;">
+          <button type="submit" class="btn btn-primary">Join Waitlist</button>
         </form>
       </div>
     </div>
@@ -242,31 +852,35 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="#" class="logo">ERP<span>ize</span></a>
-          <p>The ERP Magazine. News, tutorials, and insights for enterprise systems professionals.</p>
-          <p style="color:#f59e0b;margin-top:10px;">⚠️ This is a demo/pre-launch preview. Content shown is planned but not yet available.</p>
+          <a href="#" class="nav-logo">
+            <span class="icon">💬</span>
+            <span class="text">ERP<span class="accent">ize</span></span>
+          </a>
+          <p>AI data intelligence for modern enterprises. Ask questions, get answers.</p>
+          <p style="color: #f59e0b; margin-top: 12px;">⚠️ Demo/pre-launch. Products shown are in development.</p>
         </div>
         <div class="footer-links">
-          <h4>Topics</h4>
-          <a href="#categories">Jenzabar</a>
-          <a href="#categories">SQL & Databases</a>
-          <a href="#categories">Compliance</a>
-          <a href="#categories">Automation</a>
+          <h4>Products</h4>
+          <a href="#products">QueryAI</a>
+          <a href="#products">ForecastAI</a>
+          <a href="#products">ReportAI</a>
+          <a href="#products">AlertAI</a>
         </div>
         <div class="footer-links">
           <h4>Resources</h4>
-          <a href="#articles">Articles</a>
-          <a href="#newsletter">Newsletter</a>
-          <a href="https://erpise.com" target="_blank">ERPise Consulting</a>
+          <a href="#examples">Examples</a>
+          <a href="#use-cases">Use Cases</a>
+          <a href="https://erpise.com">ERPise (Doc AI) →</a>
         </div>
         <div class="footer-links">
-          <h4>Connect</h4>
-          <a href="mailto:hello@erpize.com">Contact Us</a>
-          <a href="https://github.com/AIUNITES/erpize-site/issues" target="_blank">Developer Feedback</a>
+          <h4>Company</h4>
+          <a href="#contact">Contact</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 ERPize. All rights reserved.</p>
+        <p>© 2026 ERPize. Part of <a href="https://aiunites.github.io/aiunites-site/" style="color: var(--accent);">AIUNITES</a></p>
         <div>
           <a href="#">Privacy</a> · <a href="#">Terms</a>
         </div>
@@ -274,12 +888,9 @@
     </div>
   </footer>
 
-  <!-- Floating Feedback Button -->
+  <!-- Feedback Button -->
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSeQUi49AdTBRjetz5MDFQgMIkm9-vOMb_ARKwYEz41j_Nfiwg/viewform?usp=pp_url&entry.2053726945=ERPize" target="_blank" class="feedback-btn">
-    <span>💬</span>
-    <span>Help / Feedback</span>
+    💬 Feedback
   </a>
-
-  <script src="js/main.js"></script>
 </body>
 </html>
