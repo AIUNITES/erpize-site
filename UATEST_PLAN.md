@@ -58,4 +58,13 @@
 
 ---
 
-*Last tested: January 24, 2026*
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0.0 | Jan 24, 2026 | Initial landing page |
+| 1.1.0 | Feb 15, 2026 | Legal compliance: updated all legal links to centralized legal.html |
+
+---
+
+*Last tested: February 15, 2026*
