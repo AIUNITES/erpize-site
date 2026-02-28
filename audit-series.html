@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>The SIS Audit Series (10 Parts) | ERPize - The ERP Magazine</title>
+  <meta name="description" content="A 10-part series on building a systematic audit framework for Student Information Systems and multi-site web portfolios. From documentation to the complete audit script.">
+  <meta name="keywords" content="SIS audit, ERP audit, student information system, web portfolio audit, feature tracking, UATEST, quality assurance, Jenzabar audit, higher education IT">
+  <meta name="author" content="ERPize">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://erpize.com/audit-series.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://erpize.com/audit-series.html">
+  <meta property="og:title" content="The SIS Audit Series — 10 Parts | ERPize">
+  <meta property="og:description" content="Build a complete audit system for your SIS portfolio. 10 articles, real code, one working tool at the end.">
+  <meta property="og:site_name" content="ERPize">
+
+  <meta name="theme-color" content="#06b6d4">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The SIS Audit Series — Building a Systematic Audit Framework",
+    "description": "A 10-part series on building a complete audit system for Student Information Systems and multi-site web portfolios.",
+    "author": { "@type": "Organization", "name": "ERPize" },
+    "publisher": { "@type": "Organization", "name": "ERPize" },
+    "datePublished": "2026-02-27",
+    "articleSection": "Tutorials"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>">
+
+  <style>
+    /* Series Page Styles */
+    .series-hero {
+      padding: 10rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .series-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+    }
+    .series-hero .container { position: relative; }
+    .series-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .series-hero-sub {
+      font-size: 1.15rem;
+      color: var(--gray);
+      max-width: 620px;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .series-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .series-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+    .series-meta-item strong { color: var(--white); }
+    .series-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Progress Bar */
+    .series-progress {
+      max-width: 800px;
+      margin: 0 auto 4rem;
+      text-align: center;
+    }
+    .progress-bar-wrap {
+      background: var(--dark-gray);
+      border-radius: 50px;
+      height: 8px;
+      margin: 1rem 0;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--gradient-1);
+      border-radius: 50px;
+      width: 10%;
+      transition: width 0.5s ease;
+    }
+    .progress-label {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+    .progress-label strong { color: var(--accent); }
+
+    /* Episode List */
+    .episodes-list {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .episode-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 1.75rem 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    .episode-card:hover {
+      border-color: var(--accent);
+      transform: translateX(5px);
+    }
+    .episode-card.available {
+      border-color: rgba(6, 182, 212, 0.3);
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(16, 185, 129, 0.03));
+    }
+    .episode-card.available:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 25px rgba(6, 182, 212, 0.15);
+    }
+    .episode-card.locked { opacity: 0.6; }
+    .episode-card.locked:hover { opacity: 0.8; transform: none; }
+
+    .episode-num {
+      min-width: 48px;
+      height: 48px;
+      background: var(--dark-gray);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--gray);
+      flex-shrink: 0;
+    }
+    .episode-card.available .episode-num {
+      background: var(--gradient-1);
+      color: var(--black);
+      border: none;
+    }
+    .episode-body { flex: 1; }
+    .episode-body h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
+    }
+    .episode-body p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+    .episode-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .episode-tag {
+      padding: 0.2rem 0.6rem;
+      background: rgba(6, 182, 212, 0.08);
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .episode-status {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    .status-live {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .status-soon {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--gray);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* What You'll Build */
+    .outcome-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .outcome-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: all 0.3s;
+    }
+    .outcome-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .outcome-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .outcome-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .outcome-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* Brands */
+    .brands-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .brand-pill {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .brand-pill:hover { border-color: var(--accent); }
+    .brand-pill .icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+    .brand-pill h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .brand-pill .role {
+      font-size: 0.75rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    /* Quote */
+    .series-quote {
+      max-width: 700px;
+      margin: 3rem auto;
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      border-left: 4px solid var(--accent);
+    }
+    .series-quote p {
+      color: var(--white);
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+    .series-quote .attr {
+      color: var(--gray);
+      font-size: 0.85rem;
+      font-style: normal;
+    }
+
+    @media (max-width: 768px) {
+      .series-hero { padding: 7rem 0 3rem; }
+      .episode-card { flex-direction: column; gap: 1rem; }
+      .episode-status { align-self: flex-start; }
+      .brands-row { grid-template-columns: 1fr; }
+      .series-meta { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- AIUNITES Webring -->
+  <style>.aiunites-bar{position:fixed;top:0;left:0;right:0;z-index:10000;background:linear-gradient(90deg,#0a0a0f,#1a1a2e);border-bottom:1px solid rgba(99,102,241,.3);padding:8px 0;font-size:12px}.aiunites-bar-content{max-width:1400px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:12px;overflow-x:auto;scrollbar-width:none}.aiunites-bar-content::-webkit-scrollbar{display:none}.aiunites-bar a{color:rgba(255,255,255,.7);text-decoration:none;white-space:nowrap;transition:color .2s}.aiunites-bar a:hover{color:#fff}.aiunites-bar-brand{color:#6366f1!important;font-weight:600}.aiunites-bar-brand:hover{color:#818cf8!important}.aiunites-bar-divider{color:rgba(255,255,255,.2)}body{padding-top:36px!important}.nav{top:36px!important}</style>
+  <div class="aiunites-bar"><div class="aiunites-bar-content"><a href="https://aiunites.github.io/aiunites-site/" class="aiunites-bar-brand">◆ AIUNITES</a><span class="aiunites-bar-divider">|</span><a href="https://aiunites.github.io/aizines-app/">AIZines</a><a href="https://aiunites.github.io/aibyjob-demo/">AIByJob</a><a href="https://aiunites.github.io/redomy-demo/">Redomy</a><a href="https://aiunites.github.io/videobate-site/">VideoBate</a><a href="https://aiunites.github.io/voicestry-site/">VoiceStry</a><a href="https://aiunites.github.io/furnishthings-site/">FurnishThings</a><a href="https://aiunites.github.io/bizstry-site/">BizStry</a><a href="https://aiunites.github.io/aiyhwh-site/">AI YHWH</a><a href="https://aiunites.github.io/cloudsion-site/">Cloudsion</a><a href="https://aiunites.github.io/gameatica-site/">Gameatica</a><a href="https://aiunites.github.io/uptownit-site/">UptownIT</a><a href="https://aiunites.github.io/inthisworld-site/">InThisWorld</a><a href="https://aiunites.github.io/erpise-site/">ERPise</a><a href="https://aiunites.github.io/erpize-site/" style="color:#fff!important;text-decoration:underline;text-underline-offset:3px;">ERPize</a><a href="https://aiunites.github.io/aitsql-site/">AITSQL</a><a href="https://aiunites.github.io/cosmostheopera-site/">🌌 COSMOS</a></div></div>
+  <script>(function(){if(location.protocol==='file:'||location.hostname==='localhost'||location.hostname==='127.0.0.1'){document.querySelectorAll('.aiunites-bar a').forEach(a=>{a.href=a.href.replace('https://aiunites.github.io/','../')+'index.html';});}})()</script>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="logo">ERP<span>ize</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="audit-series.html" style="color:var(--white);">Audit Series</a>
+      <a href="index.html#articles">Articles</a>
+      <a href="index.html#newsletter">Subscribe</a>
+      <a href="#" onclick="event.preventDefault();openSearch()" style="display:inline-flex;align-items:center;gap:4px;">🔍 Search</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="series-hero">
+    <div class="container">
+      <div class="hero-badge">📰 Featured Series — 10 Parts</div>
+      <h1>The SIS <span class="gradient-text">Audit Series</span></h1>
+      <p class="series-hero-sub">Build a complete audit framework for your Student Information System portfolio. Ten articles. Real methodology. Working code. By the end, you'll have a systematic way to validate every site, every feature, every link — and the script to automate it.</p>
+      <div class="series-meta">
+        <div class="series-meta-item">📝 <strong>10</strong>&nbsp;articles</div>
+        <div class="series-meta-item">💻 <strong>Working code</strong>&nbsp;each part</div>
+        <div class="series-meta-item">🔧 <strong>Complete tool</strong>&nbsp;at the end</div>
+        <div class="series-meta-item">📅 <strong>Feb–Apr 2026</strong></div>
+      </div>
+      <div class="series-cta">
+        <a href="#episodes" class="btn-primary btn-large">View All Parts ↓</a>
+        <a href="index.html#newsletter" class="btn-secondary btn-large">Get Notified</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Progress -->
+  <section class="section">
+    <div class="container">
+      <div class="series-progress">
+        <div class="progress-label"><strong>Part 1 of 10</strong> published</div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" style="width: 10%;"></div>
+        </div>
+        <div class="progress-label">New articles published weekly</div>
+      </div>
+
+      <!-- What You'll Build -->
+      <div class="section-header">
+        <div class="section-badge">What you'll build</div>
+        <h2>A complete audit system</h2>
+        <p>Each article teaches one piece. By Part 10, they all connect into a working tool.</p>
+      </div>
+      <div class="outcome-grid">
+        <div class="outcome-card">
+          <div class="outcome-icon">📋</div>
+          <h3>UATest Plans</h3>
+          <p>A documented baseline for every site listing every feature, page, and integration point. Your single source of truth.</p>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-icon">📊</div>
+          <h3>Feature Matrix</h3>
+          <p>A cross-site tracking system that shows which features exist where — and what's missing, broken, or drifted.</p>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-icon">🔍</div>
+          <h3>Validation Scripts</h3>
+          <p>Code that crawls your portfolio and checks navigation, links, mobile responsiveness, sitemaps, and shared components.</p>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-icon">📄</div>
+          <h3>Audit Reports</h3>
+          <p>Clean, prioritized findings with severity levels. Not a wall of false positives — actionable issues that matter.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Episode List -->
+  <section id="episodes" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">All Episodes</div>
+        <h2>The full series</h2>
+        <p>Ten parts, each building on the last. Follow along or binge when it's complete.</p>
+      </div>
+
+      <div class="episodes-list">
+
+        <!-- Part 1 -->
+        <div class="episode-card available">
+          <div class="episode-num">1</div>
+          <div class="episode-body">
+            <h3>The Silent Drift Problem</h3>
+            <p>Why multi-site portfolios break without anyone noticing. The gap between what you think is deployed and what's actually deployed. How one navigation change can cascade across 18 sites — and why nobody catches it until a user complains.</p>
+            <div class="episode-tags">
+              <span class="episode-tag">Methodology</span>
+              <span class="episode-tag">Problem Statement</span>
+            </div>
+          </div>
+          <span class="episode-status status-live">● Live</span>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="episode-card locked">
+          <div class="episode-num">2</div>
+          <div class="episode-body">
+            <h3>Document Before You Touch</h3>
+            <p>Creating UATest plans as your validation baseline. The template, the process, and the rule: never make a change without knowing what should be there first. Includes the complete UATEST plan template with walkthrough.</p>
+            <div class="episode-tags">
+              <span class="episode-tag">Documentation</span>
+              <span class="episode-tag">Template</span>
+              <span class="episode-tag">Process</span>
+            </div>
+          </div>
+          <span class="episode-status status-soon">Coming Soon</span>
+        </div>
+
+        <!-- Part 3 -->
+        <div class="episode-card locked">
+          <div class="episode-num">3</div>
+          <div class="episode-body">
+            <h3>The Feature Matrix</h3>
+            <p>Tracking what exists across every site and module. Building a cross-site inventory that shows authentication status, shared components, site-specific features, and deployment state at a glance.</p>
+            <div class="episode-tags">
+              <span class="episode-tag">Tracking</span>
+              <span class="episode-tag">Inventory</span>
+              <span class="episode-tag">Code</span>
+            </div>
+          </div>
+          <span class="episode-status status-soon">Coming Soon</span>
+        </div>
+
+        <!-- Part 4 -->
+        <div class="episode-card locked">
+          <div class="episode-num">4</div>
+          <div class="episode-body">
+            <h3>Navigation Consistency Checks</h3>
+            <p>Why menus diverge and how to catch it programmatically. Parsing HTML to extract nav links, comparing across pages within a site and across sites in a portfolio. The first real audit script.</p>
+            <div class="episode-tags">
+              <span class="episode-tag">Navigation</span>
+              <span class="episode-tag">Script</span>
+              <span class="episode-tag">HTML Parsing</span>
+            </div>
+          </div>
+          <span class="episode-status status-soon">Coming Soon</span>
+        </div>
+
+        <!-- Part 5 -->
+        <div class="episode-card locked">
+          <div class="episode-num">5</div>
+          <div class="episode-body">
+            <h3>The Mobile Trap</h3>
+            <p>How <code style="color:var(--accent);">display: none</code> silently kills mobile navigation. Scanning CSS for responsive antipatterns. Checking viewport meta tags, hamburger menu presence, and touch target sizes.</p>
+            <div class="episode-tags">
+              <span class="episode-tag">Mobile</span>
+              <span class="episode-tag">CSS Analysis</span>
+              <span class="episode-tag">Responsive</span>
+            </div>
+          </div>
+          <span class="episode-status status-soon">Coming Soon</span>
+        </div>
+
+        <!-- Part 6 -->
+        <div class="episode-card locked">
+          <div class="episode-num">6</div>
+          <div class="episode-body">
+            <h3>Cross-Site Link Validation</h3>
+            <p>Dead links between systems are invisible until someone clicks one. Building a link crawler that checks internal links, cross-site links, anchor targets, and webring integrity across the entire portfolio.</p>
+            <div class="episode-tags">
+              <span class="episode-tag">Links</span>
+              <span class="episode-tag">Crawler</span>
+              <span class="episode-tag">Script</span>
+            </div>
+          </div>
+          <span class="episode-status status-soon">Coming Soon</span>
+        </div>
+
+        <!-- Part 7 -->
+        <div class="episode-card locked">
+          <div class="episode-num">7</div>
+          <div class="episode-body">
+            <h3>Shared Component Sync</h3>
+            <p>When 18 sites have 18 versions of the same webring, footer, or analytics tag. Extracting shared components, hashing them, and diffing across sites to find which deployments are out of date.</p>
+            <div class="episode-tags">
+              <span class="episode-tag">Components</span>
+              <span class="episode-tag">Diffing</span>
+              <span class="episode-tag">Hashing</span>
+            </div>
+          </div>
+          <span class="episode-status status-soon">Coming Soon</span>
+        </div>
+
+        <!-- Part 8 -->
+        <div class="episode-card locked">
+          <div class="episode-num">8</div>
+          <div class="episode-body">
+            <h3>SEO & Sitemap Auditing</h3>
+            <p>Are search engines seeing what you think they're seeing? Validating meta tags, canonical URLs, robots.txt, sitemap.xml entries against actual pages, and checking for the gaps Google Search Console won't tell you about.</p>
+            <div class="episode-tags">
+              <span class="episode-tag">SEO</span>
+              <span class="episode-tag">Sitemap</span>
+              <span class="episode-tag">Meta Tags</span>
+            </div>
+          </div>
+          <span class="episode-status status-soon">Coming Soon</span>
+        </div>
+
+        <!-- Part 9 -->
+        <div class="episode-card locked">
+          <div class="episode-num">9</div>
+          <div class="episode-body">
+            <h3>The Audit Report</h3>
+            <p>Raw findings are useless without prioritization. Building a report generator that categorizes issues by severity, groups them by site, and produces actionable output — not a 500-line dump of warnings.</p>
+            <div class="episode-tags">
+              <span class="episode-tag">Reporting</span>
+              <span class="episode-tag">Severity</span>
+              <span class="episode-tag">Output</span>
+            </div>
+          </div>
+          <span class="episode-status status-soon">Coming Soon</span>
+        </div>
+
+        <!-- Part 10 -->
+        <div class="episode-card locked">
+          <div class="episode-num">10</div>
+          <div class="episode-body">
+            <h3>The Complete Audit Script</h3>
+            <p>Everything assembled into a single tool. All 8 checks. One command. One report. Tested on a live 18-site network. The complete audit script, available at AITSQL.</p>
+            <div class="episode-tags">
+              <span class="episode-tag">Complete Tool</span>
+              <span class="episode-tag">AITSQL</span>
+              <span class="episode-tag">Final Build</span>
+            </div>
+          </div>
+          <span class="episode-status status-soon">Finale</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Study Teaser -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Real-world tested</div>
+        <h2>Built on a live 18-site network</h2>
+        <p>This isn't theory. Every technique in this series was developed by auditing a real portfolio.</p>
+      </div>
+
+      <div class="series-quote">
+        <p>"We built 18 sites. They shared a database, a design language, and a webring. After six months, the webring existed in three different versions, four sites had inconsistent navigation, and nobody could say with certainty which sites had which features. So we built an audit tool."</p>
+        <div class="attr">— The origin of the series</div>
+      </div>
+
+      <div class="brands-row">
+        <div class="brand-pill">
+          <div class="icon">📰</div>
+          <h4>ERPize</h4>
+          <div class="role">Editorial</div>
+        </div>
+        <div class="brand-pill" style="border-color: rgba(6,182,212,0.3); background: rgba(6,182,212,0.04);">
+          <div class="icon">⚡</div>
+          <h4>AITSQL</h4>
+          <div class="role">The Tool</div>
+        </div>
+        <div class="brand-pill">
+          <div class="icon">🔧</div>
+          <h4>ERPise</h4>
+          <div class="role">Consulting</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="newsletter">
+        <h2>Don't miss the next part.</h2>
+        <p>Get notified when new articles in the SIS Audit Series are published.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks! You\'ll be notified when the next part drops.');">
+          <input type="email" placeholder="Your email" required>
+          <button type="submit">Notify Me</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 ERPize. The ERP Magazine.</p>
+        <p>Part of the <a href="https://aiunites.github.io/aiunites-site/" style="color:var(--accent);">AIUNITES</a> network</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Fade-in observer
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0) translateX(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.episode-card, .outcome-card, .brand-pill').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(15px)';
+      el.style.transition = 'all 0.4s ease';
+      observer.observe(el);
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -76,9 +76,10 @@
     <a href="#" class="logo">ERP<span>ize</span></a>
     <div class="nav-links">
       <a href="#articles">Articles</a>
+      <a href="audit-series.html">Audit Series</a>
       <a href="#categories">Topics</a>
       <a href="#newsletter">Subscribe</a>
-      <a href="https://erpise.com" target="_blank">ERPise Consulting →</a>
+      <a href="#" id="searchToggle" onclick="event.preventDefault();openSearch()" style="display:inline-flex;align-items:center;gap:4px;">🔍 Search</a>
     </div>
   </nav>
 
@@ -290,6 +291,334 @@
     <span>💬</span>
     <span>Help / Feedback</span>
   </a>
+
+  <!-- Search Overlay -->
+  <style>
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 20000;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(20px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 12vh;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+    }
+    .search-overlay.open { opacity: 1; visibility: visible; }
+    .search-container {
+      width: 90%;
+      max-width: 600px;
+      transform: translateY(-20px);
+      transition: transform 0.25s ease;
+    }
+    .search-overlay.open .search-container { transform: translateY(0); }
+    .search-input-wrap {
+      display: flex;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid rgba(6,182,212,0.3);
+      border-radius: 16px;
+      padding: 0 1.25rem;
+      gap: 0.75rem;
+    }
+    .search-input-wrap .search-icon { font-size: 1.2rem; color: var(--gray); flex-shrink: 0; }
+    .search-input {
+      flex: 1;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 1.1rem;
+      padding: 1.1rem 0;
+      outline: none;
+    }
+    .search-input::placeholder { color: var(--gray); }
+    .search-close {
+      background: none;
+      border: none;
+      color: var(--gray);
+      font-size: 0.85rem;
+      cursor: pointer;
+      padding: 0.4rem 0.75rem;
+      border-radius: 8px;
+      transition: all 0.2s;
+      font-family: var(--font);
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+    .search-close:hover { color: var(--white); background: rgba(255,255,255,0.1); }
+    .search-results {
+      margin-top: 0.75rem;
+      max-height: 50vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .search-results::-webkit-scrollbar { width: 4px; }
+    .search-results::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+    .search-result-item {
+      display: block;
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .search-result-item:hover {
+      border-color: var(--accent);
+      background: rgba(6,182,212,0.06);
+      transform: translateX(4px);
+    }
+    .search-result-item h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      color: var(--white);
+    }
+    .search-result-item p {
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+    .search-result-item .result-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.3rem;
+    }
+    .search-hint {
+      text-align: center;
+      color: var(--gray);
+      font-size: 0.85rem;
+      padding: 2rem 0;
+    }
+    .search-hint kbd {
+      background: var(--dark-gray);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      padding: 0.15rem 0.5rem;
+      font-size: 0.8rem;
+      font-family: var(--font);
+    }
+  </style>
+
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search articles, topics, series..." autocomplete="off">
+        <button class="search-close" onclick="closeSearch()">ESC</button>
+      </div>
+      <div class="search-results" id="searchResults">
+        <div class="search-hint">Start typing to search &middot; Press <kbd>ESC</kbd> to close</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Site search index — all searchable content
+    const searchIndex = [
+      {
+        title: 'The SIS Audit Series (10 Parts)',
+        desc: 'Build a complete audit framework for your Student Information System portfolio. Ten articles, real code, one working tool at the end.',
+        tag: 'Featured Series',
+        url: 'audit-series.html',
+        keywords: 'audit sis student information system uatest validation testing portfolio multi-site qa quality assurance'
+      },
+      {
+        title: 'Part 1: The Silent Drift Problem',
+        desc: 'Why multi-site portfolios break without anyone noticing. The gap between what you think is deployed and what\'s actually there.',
+        tag: 'Audit Series',
+        url: 'audit-series.html#episodes',
+        keywords: 'drift feature loss navigation inconsistency silent break portfolio'
+      },
+      {
+        title: 'Part 2: Document Before You Touch',
+        desc: 'Creating UATest plans as your validation baseline. The template and the process.',
+        tag: 'Audit Series · Coming Soon',
+        url: 'audit-series.html#episodes',
+        keywords: 'uatest documentation baseline template test plan validation'
+      },
+      {
+        title: 'Part 3: The Feature Matrix',
+        desc: 'Tracking what exists across every site and module with a cross-site inventory.',
+        tag: 'Audit Series · Coming Soon',
+        url: 'audit-series.html#episodes',
+        keywords: 'feature matrix tracking inventory cross-site modules'
+      },
+      {
+        title: 'Part 4: Navigation Consistency Checks',
+        desc: 'Why menus diverge and how to catch it programmatically. The first real audit script.',
+        tag: 'Audit Series · Coming Soon',
+        url: 'audit-series.html#episodes',
+        keywords: 'navigation menu consistency html parsing script audit'
+      },
+      {
+        title: 'Part 5: The Mobile Trap',
+        desc: 'How display:none silently kills mobile navigation. Scanning CSS for responsive antipatterns.',
+        tag: 'Audit Series · Coming Soon',
+        url: 'audit-series.html#episodes',
+        keywords: 'mobile responsive display none css hamburger menu breakpoint'
+      },
+      {
+        title: 'Part 6: Cross-Site Link Validation',
+        desc: 'Building a link crawler that checks internal links, cross-site links, and webring integrity.',
+        tag: 'Audit Series · Coming Soon',
+        url: 'audit-series.html#episodes',
+        keywords: 'links crawler dead broken webring cross-site validation'
+      },
+      {
+        title: 'Part 7: Shared Component Sync',
+        desc: 'When 18 sites have 18 versions of the same webring, footer, or analytics tag.',
+        tag: 'Audit Series · Coming Soon',
+        url: 'audit-series.html#episodes',
+        keywords: 'shared component sync webring footer analytics hashing diffing'
+      },
+      {
+        title: 'Part 8: SEO & Sitemap Auditing',
+        desc: 'Validating meta tags, canonical URLs, robots.txt, and sitemap entries against actual pages.',
+        tag: 'Audit Series · Coming Soon',
+        url: 'audit-series.html#episodes',
+        keywords: 'seo sitemap meta tags canonical robots search engine optimization google'
+      },
+      {
+        title: 'Part 9: The Audit Report',
+        desc: 'Building a report generator with severity levels and prioritized, actionable findings.',
+        tag: 'Audit Series · Coming Soon',
+        url: 'audit-series.html#episodes',
+        keywords: 'report findings severity prioritization output actionable'
+      },
+      {
+        title: 'Part 10: The Complete Audit Script',
+        desc: 'Everything assembled into a single tool. All 8 checks, one command, one report.',
+        tag: 'Audit Series · Finale',
+        url: 'audit-series.html#episodes',
+        keywords: 'complete tool script aitsql final build automation'
+      },
+      {
+        title: 'Mastering SUBSTRING and CHARINDEX in T-SQL',
+        desc: 'String manipulation techniques every database developer needs for parsing complex data.',
+        tag: 'SQL Tips',
+        url: '#articles',
+        keywords: 'sql t-sql substring charindex string parsing query'
+      },
+      {
+        title: 'Understanding the Jenzabar Charges System',
+        desc: 'A deep dive into how student billing works in J1 Desktop, from transaction types to validation.',
+        tag: 'Jenzabar',
+        url: '#articles',
+        keywords: 'jenzabar charges billing j1 desktop student transactions'
+      },
+      {
+        title: 'IPEDS Fall Enrollment: Step-by-Step Guide',
+        desc: 'Everything you need to prepare accurate fall enrollment data for federal reporting.',
+        tag: 'Compliance',
+        url: '#articles',
+        keywords: 'ipeds enrollment federal reporting compliance higher education'
+      },
+      {
+        title: 'PowerShell Scripts for Jenzabar Admins',
+        desc: 'Automate common tasks with ready-to-use PowerShell scripts and templates.',
+        tag: 'Automation',
+        url: '#articles',
+        keywords: 'powershell automation scripts jenzabar admin tasks'
+      },
+      {
+        title: 'Detecting Duplicate Student Charges',
+        desc: 'SQL queries and techniques for finding and fixing billing anomalies in your system.',
+        tag: 'Billing',
+        url: '#articles',
+        keywords: 'duplicate charges billing sql detection anomalies student'
+      },
+      {
+        title: 'ERP Trends in Higher Education 2026',
+        desc: 'What\'s changing in campus technology and how to prepare your institution.',
+        tag: 'Higher Ed',
+        url: '#articles',
+        keywords: 'erp trends higher education campus technology 2026'
+      },
+      {
+        title: 'ERPise — ERP Consulting & Integration',
+        desc: 'Hands-on implementation. Jenzabar systems, SQL Server, SSIS, SSRS consulting services.',
+        tag: 'Partner',
+        url: 'https://aiunites.github.io/erpise-site/',
+        keywords: 'erpise consulting integration jenzabar sql server ssis ssrs'
+      },
+      {
+        title: 'AITSQL — Audit Tools & SQL Scripts',
+        desc: 'Independent audit tools for web portfolios and SQL Server environments.',
+        tag: 'Partner',
+        url: 'https://aiunites.github.io/aitsql-site/',
+        keywords: 'aitsql audit tool sql scripts validation'
+      }
+    ];
+
+    function openSearch() {
+      document.getElementById('searchOverlay').classList.add('open');
+      document.getElementById('searchInput').value = '';
+      document.getElementById('searchInput').focus();
+      document.getElementById('searchResults').innerHTML = '<div class="search-hint">Start typing to search &middot; Press <kbd>ESC</kbd> to close</div>';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSearch() {
+      document.getElementById('searchOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('searchInput').addEventListener('input', function() {
+      const q = this.value.toLowerCase().trim();
+      const results = document.getElementById('searchResults');
+
+      if (!q) {
+        results.innerHTML = '<div class="search-hint">Start typing to search &middot; Press <kbd>ESC</kbd> to close</div>';
+        return;
+      }
+
+      const matches = searchIndex.filter(item => {
+        const haystack = (item.title + ' ' + item.desc + ' ' + item.keywords + ' ' + item.tag).toLowerCase();
+        return q.split(/\s+/).every(word => haystack.includes(word));
+      });
+
+      if (matches.length === 0) {
+        results.innerHTML = '<div class="search-hint">No results for "' + q.replace(/</g,'&lt;') + '"</div>';
+        return;
+      }
+
+      results.innerHTML = matches.map(item =>
+        '<a href="' + item.url + '" class="search-result-item" onclick="closeSearch()">' +
+        '<div class="result-tag">' + item.tag + '</div>' +
+        '<h4>' + item.title + '</h4>' +
+        '<p>' + item.desc + '</p>' +
+        '</a>'
+      ).join('');
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeSearch();
+      // Ctrl+K or Cmd+K to open search
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        openSearch();
+      }
+    });
+
+    // Close on backdrop click
+    document.getElementById('searchOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeSearch();
+    });
+  </script>
 
   <script src="js/main.js"></script>
 </body>
