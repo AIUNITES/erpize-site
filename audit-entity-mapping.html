@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SIS Audit Coverage vs. Industry Data Models | ERPize</title>
+  <meta name="description" content="Cross-reference of SIS audit checks against the Microsoft Education Accelerator Common Data Model. Vendor-neutral entity mapping for higher education data integrity audits.">
+  <meta name="keywords" content="SIS audit, Common Data Model, Microsoft Education Accelerator, higher education, data integrity, IPEDS, FERPA, compliance, entity mapping, CDM">
+  <meta name="author" content="ERPize">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://erpize.com/audit-entity-mapping.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://erpize.com/audit-entity-mapping.html">
+  <meta property="og:title" content="SIS Audit Coverage vs. Industry Data Models | ERPize">
+  <meta property="og:description" content="Mapping audit checks to Microsoft's open-source Education CDM. What the standard models cover — and what they miss.">
+  <meta property="og:site_name" content="ERPize">
+
+  <meta name="theme-color" content="#06b6d4">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "SIS Audit Coverage vs. Industry Data Models",
+    "description": "Cross-reference of SIS audit checks against the Microsoft Education Accelerator Common Data Model for higher education.",
+    "author": { "@type": "Organization", "name": "ERPize" },
+    "publisher": { "@type": "Organization", "name": "ERPize" },
+    "datePublished": "2026-02-28",
+    "articleSection": "Audit Series"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>">
+
+  <style>
+    .article-hero {
+      padding: 10rem 0 3rem;
+      position: relative;
+    }
+    .article-hero::before {
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse at 30% 20%,rgba(6,182,212,.1) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(16,185,129,.06) 0%,transparent 50%);
+    }
+    .article-hero .container{position:relative}
+    .article-hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.15;margin-bottom:1rem}
+    .article-hero-sub{font-size:1.1rem;color:var(--gray);max-width:640px;line-height:1.8;margin-bottom:1.5rem}
+    .article-meta{display:flex;gap:1.5rem;flex-wrap:wrap;font-size:.85rem;color:var(--gray)}
+    .article-meta strong{color:var(--white)}
+
+    .article-body{max-width:820px;margin:0 auto;padding:3rem 0 4rem}
+    .article-body h2{font-size:1.5rem;font-weight:800;margin:3rem 0 1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06)}
+    .article-body h3{font-size:1.15rem;font-weight:700;margin:2rem 0 .75rem;color:var(--accent)}
+    .article-body p{font-size:.95rem;color:var(--gray);line-height:1.85;margin-bottom:1.25rem}
+    .article-body a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+    .article-body strong{color:var(--white)}
+    .article-body code{background:var(--dark-gray);padding:.15rem .4rem;border-radius:4px;font-size:.85rem;color:var(--accent)}
+
+    .entity-table{width:100%;border-collapse:collapse;margin:1.5rem 0 2rem;font-size:.85rem}
+    .entity-table th{text-align:left;padding:.65rem .75rem;background:var(--dark-gray);color:var(--white);font-weight:600;border-bottom:2px solid rgba(6,182,212,.2)}
+    .entity-table td{padding:.55rem .75rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--gray);vertical-align:top}
+    .entity-table tr:hover td{background:rgba(6,182,212,.03)}
+    .entity-table .status-partial{color:#f59e0b}
+    .entity-table .status-none{color:#ef4444}
+    .entity-table .status-ok{color:#22c55e}
+
+    .callout{background:var(--card-bg);border:1px solid rgba(6,182,212,.2);border-left:4px solid var(--accent);border-radius:12px;padding:1.5rem 1.75rem;margin:2rem 0}
+    .callout p{margin-bottom:.5rem}
+    .callout p:last-child{margin-bottom:0}
+
+    .tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1.5rem 0 2rem}
+    .tier-card{background:var(--card-bg);border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:1.25rem 1.5rem}
+    .tier-card h4{font-size:.9rem;font-weight:700;margin-bottom:.5rem;color:var(--white)}
+    .tier-card .coverage{font-size:.75rem;font-weight:600;margin-bottom:.5rem}
+    .tier-card ul{list-style:none;padding:0;margin:0}
+    .tier-card li{font-size:.82rem;color:var(--gray);padding:.2rem 0;line-height:1.5}
+    .tier-card li::before{content:'→ ';color:var(--accent)}
+
+    .back-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--accent);text-decoration:none;margin-bottom:1rem}
+    .back-link:hover{text-decoration:underline}
+
+    @media(max-width:768px){
+      .article-hero{padding:7rem 0 2rem}
+      .entity-table{font-size:.78rem}
+      .entity-table th,.entity-table td{padding:.45rem .5rem}
+    }
+  </style>
+</head>
+<body>
+  <!-- AIUNITES Webring -->
+  <style>.aiunites-bar{position:fixed;top:0;left:0;right:0;z-index:10000;background:linear-gradient(90deg,#0a0a0f,#1a1a2e);border-bottom:1px solid rgba(99,102,241,.3);padding:8px 0;font-size:12px}.aiunites-bar-content{max-width:1400px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:12px;overflow-x:auto;scrollbar-width:none}.aiunites-bar-content::-webkit-scrollbar{display:none}.aiunites-bar a{color:rgba(255,255,255,.7);text-decoration:none;white-space:nowrap;transition:color .2s}.aiunites-bar a:hover{color:#fff}.aiunites-bar-brand{color:#6366f1!important;font-weight:600}.aiunites-bar-brand:hover{color:#818cf8!important}.aiunites-bar-divider{color:rgba(255,255,255,.2)}body{padding-top:36px!important}.nav{top:36px!important}</style>
+  <div class="aiunites-bar"><div class="aiunites-bar-content"><a href="https://aiunites.github.io/aiunites-site/" class="aiunites-bar-brand">◆ AIUNITES</a><span class="aiunites-bar-divider">|</span><a href="https://aiunites.github.io/aizines-app/">AIZines</a><a href="https://aiunites.github.io/aibyjob-demo/">AIByJob</a><a href="https://aiunites.github.io/redomy-demo/">Redomy</a><a href="https://aiunites.github.io/videobate-site/">VideoBate</a><a href="https://aiunites.github.io/voicestry-site/">VoiceStry</a><a href="https://aiunites.github.io/furnishthings-site/">FurnishThings</a><a href="https://aiunites.github.io/bizstry-site/">BizStry</a><a href="https://aiunites.github.io/aiyhwh-site/">AI YHWH</a><a href="https://aiunites.github.io/cloudsion-site/">Cloudsion</a><a href="https://aiunites.github.io/gameatica-site/">Gameatica</a><a href="https://aiunites.github.io/uptownit-site/">UptownIT</a><a href="https://aiunites.github.io/inthisworld-site/">InThisWorld</a><a href="https://aiunites.github.io/erpise-site/">ERPise</a><a href="https://aiunites.github.io/erpize-site/" style="color:#fff!important;text-decoration:underline;text-underline-offset:3px;">ERPize</a><a href="https://aiunites.github.io/aitsql-site/">AITSQL</a><a href="https://aiunites.github.io/cosmostheopera-site/">🌌 COSMOS</a></div></div>
+  <script>(function(){if(location.protocol==='file:'||location.hostname==='localhost'||location.hostname==='127.0.0.1'){document.querySelectorAll('.aiunites-bar a').forEach(a=>{a.href=a.href.replace('https://aiunites.github.io/','../')+'index.html';});}})()</script>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="logo">ERP<span>ize</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="audit-series.html">Audit Series</a>
+      <a href="index.html#articles">Articles</a>
+      <a href="index.html#newsletter">Subscribe</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="article-hero">
+    <div class="container">
+      <a href="audit-series.html" class="back-link">← Back to Audit Series</a>
+      <div class="hero-badge">📊 Reference Document — Audit Series</div>
+      <h1>SIS Audit Coverage vs. <span class="gradient-text">Industry Data Models</span></h1>
+      <p class="article-hero-sub">Mapping common audit checks against the Microsoft Education Accelerator Common Data Model — a vendor-neutral reference for what every Student Information System should track, and where the standard models fall short.</p>
+      <div class="article-meta">
+        <span>📅 <strong>February 2026</strong></span>
+        <span>📰 <strong>ERPize</strong> — The ERP Magazine</span>
+        <span>📖 <strong>15 min</strong> read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Body -->
+  <section class="section">
+    <div class="container">
+      <div class="article-body">
+
+        <h2>Purpose</h2>
+        <p>Every Student Information System stores the same fundamental data: students, courses, enrollments, grades, financial aid, and compliance records. The specific table names differ between platforms, but the <strong>entities</strong> and <strong>audit concerns</strong> are universal.</p>
+        <p>This document maps common SIS audit checks against the <a href="https://github.com/microsoft/Industry-Accelerator-Education" target="_blank">Microsoft Education Accelerator Common Data Model</a> (open-source, MIT-licensed, archived Jan 2024) — not because any institution runs that exact schema, but because it provides a vendor-neutral reference point for the entities every SIS must support.</p>
+        <p>The goal: define <strong>what to audit</strong> independent of <strong>which platform you run</strong>.</p>
+
+        <h2>Microsoft Education Accelerator CDM — Entity Reference</h2>
+        <p>The Higher Education component of Microsoft's Common Data Model defines <strong>31 entities</strong> across five domains.</p>
+
+        <h3>Academic Structure (15 entities)</h3>
+        <table class="entity-table">
+          <thead><tr><th>CDM Entity</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>AcademicPeriod</td><td>Terms, semesters, sessions</td></tr>
+            <tr><td>AcademicPeriodDetail</td><td>Student ↔ term status</td></tr>
+            <tr><td>Course</td><td>Master course catalog</td></tr>
+            <tr><td>CourseHistory</td><td>Student transcript records</td></tr>
+            <tr><td>CourseSection</td><td>Instructor ↔ course assignments</td></tr>
+            <tr><td>RegistrationStatus</td><td>Enrollment status codes</td></tr>
+            <tr><td>Program</td><td>Degree programs</td></tr>
+            <tr><td>ProgramLevel</td><td>Degree levels (AA, BA, MA, PhD)</td></tr>
+            <tr><td>ProgramVersion</td><td>Program catalog versions</td></tr>
+            <tr><td>ProgramVersionDetail</td><td>Version effective dates</td></tr>
+            <tr><td>StudentProgramType</td><td>Major, minor, concentration</td></tr>
+            <tr><td>StudentStatus</td><td>Active, withdrawn, graduated, etc.</td></tr>
+            <tr><td>EducationLevel</td><td>Credential levels</td></tr>
+            <tr><td>AreaOfInterest</td><td>Subject groupings (broad)</td></tr>
+            <tr><td>AreaOfStudy</td><td>Specific program offerings</td></tr>
+          </tbody>
+        </table>
+
+        <h3>People & Accounts (3 entities)</h3>
+        <table class="entity-table">
+          <thead><tr><th>CDM Entity</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>Account</td><td>Institutions, employers, partners</td></tr>
+            <tr><td>Contact</td><td>Students, faculty, staff, parents</td></tr>
+            <tr><td>Address</td><td>Additional address records</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Financial Awards (6 entities)</h3>
+        <table class="entity-table">
+          <thead><tr><th>CDM Entity</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>Grant / GrantApplicant</td><td>Grant offerings and student applications</td></tr>
+            <tr><td>Scholarship / ScholarshipApplicant</td><td>Scholarship offerings and student applications</td></tr>
+            <tr><td>GrantApplicationBusinessProcessFlow</td><td>Grant workflow tracking</td></tr>
+            <tr><td>ScholarshipApplicationBusinessProcessFlow</td><td>Scholarship workflow tracking</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Student Experience (7 entities)</h3>
+        <table class="entity-table">
+          <thead><tr><th>CDM Entity</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>Internship / InternshipApplicant</td><td>Internship offerings and applications</td></tr>
+            <tr><td>InternshipApplicationFlow</td><td>Internship workflow tracking</td></tr>
+            <tr><td>ExtraCurricularActivity / Participant</td><td>Activities and student enrollment</td></tr>
+            <tr><td>Accomplishments</td><td>Student achievements</td></tr>
+            <tr><td>PreviousEducation</td><td>Prior education history</td></tr>
+            <tr><td>TestScore / TestType</td><td>Standardized test records</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Audit Check Mapping: CDM Entities → Audit Categories</h2>
+        <p>Each row maps an audit concern to the CDM entities it would touch, and flags whether the CDM actually models the data needed for that audit.</p>
+
+        <h3>Enrollment Validation</h3>
+        <table class="entity-table">
+          <thead><tr><th>Audit Check</th><th>CDM Entities</th><th>Coverage</th></tr></thead>
+          <tbody>
+            <tr><td>Active enrollments with no course registrations</td><td>AcademicPeriodDetail, CourseHistory, StudentStatus</td><td class="status-partial">⚠️ Partial</td></tr>
+            <tr><td>Students enrolled in future terms with past-term status</td><td>AcademicPeriodDetail, AcademicPeriod, StudentStatus</td><td class="status-partial">⚠️ Partial</td></tr>
+            <tr><td>Enrollment status mismatches between systems</td><td>RegistrationStatus, StudentStatus</td><td class="status-partial">⚠️ Partial</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Academic Standing & SAP</h3>
+        <table class="entity-table">
+          <thead><tr><th>Audit Check</th><th>CDM Entities</th><th>Coverage</th></tr></thead>
+          <tbody>
+            <tr><td>GPA calculations vs. posted standing</td><td>CourseHistory, StudentStatus</td><td class="status-partial">⚠️ Partial</td></tr>
+            <tr><td>Credit hour thresholds for standing changes</td><td>CourseHistory, ProgramLevel</td><td class="status-partial">⚠️ Partial</td></tr>
+            <tr><td>Satisfactory Academic Progress compliance</td><td>CourseHistory, Program, FinancialAid*</td><td class="status-none">❌ Not modeled</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Course Enrollment</h3>
+        <table class="entity-table">
+          <thead><tr><th>Audit Check</th><th>CDM Entities</th><th>Coverage</th></tr></thead>
+          <tbody>
+            <tr><td>Duplicate course registrations</td><td>CourseHistory, CourseSection</td><td class="status-partial">⚠️ Partial</td></tr>
+            <tr><td>Capacity vs. actual enrollment</td><td>CourseSection</td><td class="status-none">❌ No capacity field</td></tr>
+            <tr><td>Prerequisite enforcement</td><td>Course, CourseHistory</td><td class="status-none">❌ No prerequisite model</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Grading</h3>
+        <table class="entity-table">
+          <thead><tr><th>Audit Check</th><th>CDM Entities</th><th>Coverage</th></tr></thead>
+          <tbody>
+            <tr><td>Missing final grades for completed terms</td><td>CourseHistory, AcademicPeriod</td><td class="status-partial">⚠️ Partial</td></tr>
+            <tr><td>Grade changes after term close</td><td>CourseHistory</td><td class="status-none">❌ No audit trail</td></tr>
+            <tr><td>Grade distribution anomalies</td><td>CourseHistory, CourseSection</td><td class="status-none">❌ No statistical layer</td></tr>
+          </tbody>
+        </table>
+
+        <h3>FERPA Compliance</h3>
+        <table class="entity-table">
+          <thead><tr><th>Audit Check</th><th>CDM Entities</th><th>Coverage</th></tr></thead>
+          <tbody>
+            <tr><td>Directory hold flags</td><td>Contact</td><td class="status-none">❌ No FERPA fields</td></tr>
+            <tr><td>Consent records for information release</td><td>Contact</td><td class="status-none">❌ No consent tracking</td></tr>
+            <tr><td>Access log audit trails</td><td>(system-level)</td><td class="status-none">❌ Not in scope</td></tr>
+          </tbody>
+        </table>
+
+        <h3>1098-T Tax Compliance</h3>
+        <table class="entity-table">
+          <thead><tr><th>Audit Check</th><th>CDM Entities</th><th>Coverage</th></tr></thead>
+          <tbody>
+            <tr><td>Qualified tuition and fees</td><td>(Billing*)</td><td class="status-none">❌ No billing entities</td></tr>
+            <tr><td>Student SSN/TIN validation</td><td>Contact</td><td class="status-none">❌ No SSN/TIN fields</td></tr>
+            <tr><td>Box amounts reconciliation</td><td>(Billing*, FinancialAid*)</td><td class="status-none">❌ Not modeled</td></tr>
+          </tbody>
+        </table>
+
+        <h3>IPEDS Readiness</h3>
+        <table class="entity-table">
+          <thead><tr><th>Audit Check</th><th>CDM Entities</th><th>Coverage</th></tr></thead>
+          <tbody>
+            <tr><td>Race/ethnicity completeness</td><td>Contact</td><td class="status-partial">⚠️ Partial</td></tr>
+            <tr><td>First-time, full-time cohort ID</td><td>AcademicPeriodDetail, CourseHistory</td><td class="status-partial">⚠️ Requires derived logic</td></tr>
+            <tr><td>Graduation rate cohort tracking</td><td>StudentStatus, AcademicPeriod</td><td class="status-partial">⚠️ Partial</td></tr>
+            <tr><td>Completions by CIP code</td><td>Program, AreaOfStudy</td><td class="status-partial">⚠️ No CIP field</td></tr>
+            <tr><td>Financial aid recipient counts</td><td>(FinancialAid*)</td><td class="status-none">❌ Not modeled</td></tr>
+          </tbody>
+        </table>
+
+        <h2>What the CDM Doesn't Model</h2>
+        <p>The Microsoft Education Accelerator CDM is a <strong>CRM-flavored student lifecycle model</strong>. It covers the "happy path" of student engagement — enrollment, courses, grades, scholarships, internships, graduation. It does <strong>not</strong> model the operational and compliance infrastructure that auditors actually examine.</p>
+
+        <h3>Missing Entity Domains</h3>
+        <table class="entity-table">
+          <thead><tr><th>Domain</th><th>What's Missing</th><th>Audit Impact</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Student Billing</strong></td><td>Charges, payments, refunds, payment plans, 1098-T</td><td class="status-none">Cannot audit financial transactions</td></tr>
+            <tr><td><strong>Financial Aid</strong></td><td>Awards, disbursements, SAP, R2T4, Pell, COD</td><td class="status-none">Cannot audit Title IV compliance</td></tr>
+            <tr><td><strong>FERPA</strong></td><td>Consent records, directory holds, access logs</td><td class="status-none">Cannot audit privacy compliance</td></tr>
+            <tr><td><strong>Attendance</strong></td><td>Daily/session attendance records</td><td class="status-none">Cannot audit unofficial withdrawals</td></tr>
+            <tr><td><strong>Security</strong></td><td>User access logs, permission history, change tracking</td><td class="status-none">Cannot audit system security</td></tr>
+            <tr><td><strong>Admissions</strong></td><td>Applications, decisions, recruitment pipeline</td><td class="status-none">Cannot audit admissions integrity</td></tr>
+            <tr><td><strong>Scheduling</strong></td><td>Room assignments, time slots, instructor loads</td><td class="status-none">Cannot audit resource utilization</td></tr>
+            <tr><td><strong>Advising</strong></td><td>Degree audits, advising notes, holds</td><td class="status-none">Cannot audit student success</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Compliance Domains Not Represented</h3>
+        <table class="entity-table">
+          <thead><tr><th>Compliance Area</th><th>What Would Be Needed</th><th>CDM Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Accreditation</strong> (HLC, SACSCOC, etc.)</td><td>Program review dates, assessment outcomes, faculty credentials</td><td class="status-none">❌ Not modeled</td></tr>
+            <tr><td><strong>Office of Civil Rights / Title IX</strong></td><td>Disability accommodations, Title IX complaints, ADA, Clery Act</td><td class="status-none">❌ Not modeled</td></tr>
+            <tr><td><strong>State Audits</strong></td><td>Residency verification, state authorization, state aid</td><td class="status-none">❌ Not modeled</td></tr>
+            <tr><td><strong>Private Foundations</strong></td><td>Fund restrictions, donor compliance, endowment spending</td><td class="status-none">❌ Not modeled</td></tr>
+            <tr><td><strong>Title IV (Federal Aid)</strong></td><td>R2T4, COD reporting, Pell recalculations, verification</td><td class="status-none">❌ Not modeled</td></tr>
+            <tr><td><strong>Gainful Employment</strong></td><td>Debt-to-earnings ratios, program-level outcomes</td><td class="status-none">❌ Not modeled</td></tr>
+            <tr><td><strong>Clery Act</strong></td><td>Campus crime reporting, geography definitions</td><td class="status-none">❌ Not modeled</td></tr>
+          </tbody>
+        </table>
+
+        <h2>A Generic SIS Audit Schema</h2>
+        <p>Based on the CDM reference, industry standards (PESC, SIF, Ed-Fi), and practical audit requirements, a comprehensive SIS audit framework needs entities across four tiers:</p>
+
+        <div class="tier-grid">
+          <div class="tier-card">
+            <h4>Tier 1: Core Academic</h4>
+            <div class="coverage" style="color:#22c55e">CDM covers ~70%</div>
+            <ul>
+              <li>Terms / Academic Periods</li>
+              <li>Courses / Sections / Catalog</li>
+              <li>Enrollment / Registration</li>
+              <li>Grades / Transcript</li>
+              <li>Programs / Degrees</li>
+              <li>Student Status / Standing</li>
+            </ul>
+          </div>
+          <div class="tier-card">
+            <h4>Tier 2: Operational</h4>
+            <div class="coverage" style="color:#f59e0b">CDM covers ~10%</div>
+            <ul>
+              <li>Student Billing & Charges</li>
+              <li>Financial Aid & Disbursements</li>
+              <li>Admissions & Recruitment</li>
+              <li>Scheduling & Rooms</li>
+              <li>Advising & Degree Audit</li>
+              <li>Attendance & Participation</li>
+            </ul>
+          </div>
+          <div class="tier-card">
+            <h4>Tier 3: Compliance</h4>
+            <div class="coverage" style="color:#ef4444">CDM covers 0%</div>
+            <ul>
+              <li>FERPA Consent & Access Logs</li>
+              <li>1098-T Tax Reporting</li>
+              <li>Title IV / SAP / R2T4</li>
+              <li>IPEDS Reporting Dimensions</li>
+              <li>Accreditation Review Cycles</li>
+              <li>State Authorization</li>
+            </ul>
+          </div>
+          <div class="tier-card">
+            <h4>Tier 4: Infrastructure</h4>
+            <div class="coverage" style="color:#ef4444">CDM covers 0%</div>
+            <ul>
+              <li>User Security & Permissions</li>
+              <li>Audit Trail / Change History</li>
+              <li>System Integration Logs</li>
+              <li>Data Quality / Dedup</li>
+              <li>Referential Integrity</li>
+              <li>Backup & Recovery</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>Implications for Audit Design</h2>
+
+        <div class="callout">
+          <p><strong>1. The CDM is a starting point, not a finish line.</strong> It establishes the vocabulary — Academic Period, Course, Program, Contact — but doesn't model the operational depth that auditors need.</p>
+        </div>
+
+        <div class="callout">
+          <p><strong>2. Audit checks should be entity-aware but platform-agnostic.</strong> The check "students with active enrollment but no course registrations" exists regardless of whether the underlying tables are called <code>StudentTermRecord</code>, <code>STUDENT_ENROLLMENT</code>, or <code>mshied_AcademicPeriodDetail</code>. The audit logic is the same; only the column names change.</p>
+        </div>
+
+        <div class="callout">
+          <p><strong>3. Compliance audits require entities the CDM never intended to model.</strong> FERPA, Title IV, accreditation, and state compliance involve data elements outside the student lifecycle CRM model. These need their own audit sections.</p>
+        </div>
+
+        <div class="callout">
+          <p><strong>4. A 57-check baseline covers Tiers 1–2 well.</strong> Expanding to 80–100+ checks would add accreditation readiness, OCR/Title IX data completeness, state-specific validations, and foundation/advancement compliance.</p>
+        </div>
+
+        <h2>Other Industry Data Standards</h2>
+        <table class="entity-table">
+          <thead><tr><th>Standard</th><th>Organization</th><th>Scope</th></tr></thead>
+          <tbody>
+            <tr><td><a href="https://www.pesc.org/" target="_blank">PESC</a></td><td>Postsecondary Electronic Standards Council</td><td>Transcript, enrollment, financial aid XML schemas</td></tr>
+            <tr><td><a href="https://www.ed-fi.org/" target="_blank">Ed-Fi</a></td><td>Ed-Fi Alliance</td><td>K-12 data model (some higher ed overlap)</td></tr>
+            <tr><td><a href="https://www.a4l.org/" target="_blank">SIF</a></td><td>Access 4 Learning</td><td>K-12/Higher Ed interoperability</td></tr>
+            <tr><td><a href="https://www.1edtech.org/" target="_blank">1EdTech</a></td><td>1EdTech Consortium</td><td>LTI, Caliper, CLR, Open Badges</td></tr>
+            <tr><td><a href="https://ceds.ed.gov/" target="_blank">CEDS</a></td><td>US Dept of Education</td><td>Common Education Data Standards</td></tr>
+            <tr><td><a href="https://github.com/microsoft/Industry-Accelerator-Education" target="_blank">Microsoft CDM</a></td><td>Microsoft</td><td>Dataverse-based higher ed + K-12 schema</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Summary</h2>
+        <p>The Microsoft Education Accelerator CDM provides a useful <strong>vendor-neutral vocabulary</strong> for discussing higher education entities. By mapping audit checks against these entities rather than platform-specific table names, institutions can evaluate audit coverage independent of which SIS they run, identify gaps in compliance monitoring, and communicate audit scope to non-technical stakeholders using standard terminology.</p>
+        <p><strong>The audit checks themselves are universal. The table names are implementation details.</strong></p>
+
+        <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06);font-size:.82rem;color:var(--gray);line-height:1.7">
+          <p><em>This document references the Microsoft Education Accelerator Common Data Model, available under MIT license at <a href="https://github.com/microsoft/Industry-Accelerator-Education" target="_blank">github.com/microsoft/Industry-Accelerator-Education</a>. Microsoft, Dynamics 365, and Dataverse are trademarks of Microsoft Corporation. This publication is not affiliated with or endorsed by Microsoft.</em></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 ERPize. The ERP Magazine.</p>
+        <p>Part of the <a href="https://aiunites.github.io/aiunites-site/" style="color:var(--accent);">AIUNITES</a> network</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Fade-in observer
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.tier-card, .callout').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(15px)';
+      el.style.transition = 'all 0.4s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

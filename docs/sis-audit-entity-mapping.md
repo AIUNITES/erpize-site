@@ -280,7 +280,7 @@ Based on the CDM reference, industry standards (PESC, SIF, Ed-Fi), and practical
 
 1. **The CDM is a starting point, not a finish line.** It establishes the vocabulary — Academic Period, Course, Program, Contact — but doesn't model the operational depth that auditors need. Any audit framework built only on CDM entities would miss billing, financial aid, security, and compliance entirely.
 
-2. **Audit checks should be entity-aware but platform-agnostic.** The check "students with active enrollment but no course registrations" exists regardless of whether the underlying tables are called `STUD_TERM_SUM`, `StudentTermEnrollment`, or `mshied_AcademicPeriodDetail`. The audit logic is the same; only the column names change.
+2. **Audit checks should be entity-aware but platform-agnostic.** The check "students with active enrollment but no course registrations" exists regardless of whether the underlying tables are called `StudentTermRecord`, `STUDENT_ENROLLMENT`, or `mshied_AcademicPeriodDetail`. The audit logic is the same; only the column names change.
 
 3. **Compliance audits require entities the CDM never intended to model.** FERPA, Title IV, accreditation, and state compliance involve data elements that live outside the student lifecycle CRM model. These need their own audit sections with their own entity references.
 
