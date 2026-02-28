@@ -326,7 +326,7 @@
       <div class="series-meta">
         <div class="series-meta-item">📝 <strong>10</strong>&nbsp;articles</div>
         <div class="series-meta-item">💻 <strong>Working code</strong>&nbsp;each part</div>
-        <div class="series-meta-item">🔧 <strong>Complete tool</strong>&nbsp;at the end</div>
+        <div class="series-meta-item">🔧 <strong>57 checks</strong>&nbsp;in the final tool</div>
         <div class="series-meta-item">📅 <strong>Feb–Apr 2026</strong></div>
       </div>
       <div class="series-cta">
@@ -528,7 +528,7 @@
           <div class="episode-num">10</div>
           <div class="episode-body">
             <h3>The Complete Audit Script</h3>
-            <p>Everything assembled into a single tool. All 8 checks. One command. One report. Tested on a live 18-site network. The complete audit script, available at AITSQL.</p>
+            <p>Everything assembled into a single tool. All 57 checks. One command. One report. Tested on a live 18-site network. The complete audit script, available at AITSQL.</p>
             <div class="episode-tags">
               <span class="episode-tag">Complete Tool</span>
               <span class="episode-tag">AITSQL</span>
@@ -628,6 +628,37 @@
         }
       });
     });
+  </script>
+
+  <!-- Search Overlay -->
+  <style>
+    .search-overlay{position:fixed;inset:0;z-index:20000;background:rgba(0,0,0,0.85);backdrop-filter:blur(20px);display:flex;align-items:flex-start;justify-content:center;padding-top:12vh;opacity:0;visibility:hidden;transition:all .25s ease}
+    .search-overlay.open{opacity:1;visibility:visible}
+    .search-container{width:90%;max-width:600px;transform:translateY(-20px);transition:transform .25s ease}
+    .search-overlay.open .search-container{transform:translateY(0)}
+    .search-input-wrap{display:flex;align-items:center;background:var(--card-bg);border:1px solid rgba(6,182,212,0.3);border-radius:16px;padding:0 1.25rem;gap:0.75rem}
+    .search-input-wrap .search-icon{font-size:1.2rem;color:var(--gray);flex-shrink:0}
+    .search-input{flex:1;background:none;border:none;color:var(--white);font-family:var(--font);font-size:1.1rem;padding:1.1rem 0;outline:none}
+    .search-input::placeholder{color:var(--gray)}
+    .search-close{background:none;border:none;color:var(--gray);font-size:.85rem;cursor:pointer;padding:.4rem .75rem;border-radius:8px;transition:all .2s;font-family:var(--font);font-weight:500;flex-shrink:0}
+    .search-close:hover{color:var(--white);background:rgba(255,255,255,0.1)}
+    .search-results{margin-top:.75rem;max-height:50vh;overflow-y:auto;display:flex;flex-direction:column;gap:.5rem}
+    .search-result-item{display:block;background:var(--card-bg);border:1px solid rgba(255,255,255,0.05);border-radius:12px;padding:1rem 1.25rem;transition:all .2s;text-decoration:none;color:inherit}
+    .search-result-item:hover{border-color:var(--accent);background:rgba(6,182,212,0.06);transform:translateX(4px)}
+    .search-result-item h4{font-size:.95rem;font-weight:600;margin-bottom:.2rem;color:var(--white)}
+    .search-result-item p{font-size:.82rem;color:var(--gray);line-height:1.5}
+    .search-result-item .result-tag{display:inline-block;font-size:.65rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
+    .search-hint{text-align:center;color:var(--gray);font-size:.85rem;padding:2rem 0}
+    .search-hint kbd{background:var(--dark-gray);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:.15rem .5rem;font-size:.8rem;font-family:var(--font)}
+  </style>
+  <div class="search-overlay" id="searchOverlay"><div class="search-container"><div class="search-input-wrap"><span class="search-icon">🔍</span><input type="text" class="search-input" id="searchInput" placeholder="Search articles, topics, series..." autocomplete="off"><button class="search-close" onclick="closeSearch()">ESC</button></div><div class="search-results" id="searchResults"><div class="search-hint">Start typing to search &middot; Press <kbd>ESC</kbd> to close</div></div></div></div>
+  <script>
+    const searchIndex=[{title:'The SIS Audit Series (10 Parts)',desc:'Build a complete audit framework for your Student Information System portfolio.',tag:'Featured Series',url:'audit-series.html',keywords:'audit sis student information system uatest validation testing portfolio'},{title:'Part 1: The Silent Drift Problem',desc:'Why multi-site portfolios break without anyone noticing.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'drift feature loss navigation inconsistency'},{title:'Part 2: Document Before You Touch',desc:'Creating UATest plans as your validation baseline.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'uatest documentation baseline template'},{title:'Part 3: The Feature Matrix',desc:'Tracking what exists across every site and module.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'feature matrix tracking inventory'},{title:'Part 4: Navigation Consistency Checks',desc:'Why menus diverge and how to catch it programmatically.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'navigation menu consistency html parsing script'},{title:'Part 5: The Mobile Trap',desc:'How display:none silently kills mobile navigation.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'mobile responsive display none css hamburger'},{title:'Part 6: Cross-Site Link Validation',desc:'Building a link crawler for internal and cross-site links.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'links crawler dead broken webring'},{title:'Part 7: Shared Component Sync',desc:'When 18 sites have 18 versions of the same widget.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'shared component sync webring footer hashing'},{title:'Part 8: SEO & Sitemap Auditing',desc:'Validating meta tags, canonical URLs, and sitemap entries.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'seo sitemap meta tags canonical robots'},{title:'Part 9: The Audit Report',desc:'Building a report generator with severity levels.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'report findings severity prioritization'},{title:'Part 10: The Complete Audit Script',desc:'All 57 checks assembled into one tool. One command, one report.',tag:'Audit Series · Finale',url:'audit-series.html#episodes',keywords:'complete tool script aitsql final'},{title:'Mastering SUBSTRING and CHARINDEX in T-SQL',desc:'String manipulation techniques for database developers.',tag:'SQL Tips',url:'index.html#articles',keywords:'sql t-sql substring charindex string parsing'},{title:'Understanding the Jenzabar Charges System',desc:'How student billing works in J1 Desktop.',tag:'Jenzabar',url:'index.html#articles',keywords:'jenzabar charges billing j1 desktop'},{title:'IPEDS Fall Enrollment: Step-by-Step Guide',desc:'Prepare accurate fall enrollment data for federal reporting.',tag:'Compliance',url:'index.html#articles',keywords:'ipeds enrollment federal reporting compliance'},{title:'PowerShell Scripts for Jenzabar Admins',desc:'Ready-to-use PowerShell scripts and templates.',tag:'Automation',url:'index.html#articles',keywords:'powershell automation scripts jenzabar'},{title:'AITSQL — Audit Tools',desc:'Independent audit tools for web portfolios and SQL Server.',tag:'Partner',url:'https://aiunites.github.io/aitsql-site/',keywords:'aitsql audit tool sql scripts'},{title:'ERPise — ERP Consulting',desc:'Jenzabar systems, SQL Server, SSIS, SSRS consulting.',tag:'Partner',url:'https://aiunites.github.io/erpise-site/',keywords:'erpise consulting integration jenzabar'}];
+    function openSearch(){document.getElementById('searchOverlay').classList.add('open');document.getElementById('searchInput').value='';document.getElementById('searchInput').focus();document.getElementById('searchResults').innerHTML='<div class="search-hint">Start typing to search &middot; Press <kbd>ESC</kbd> to close</div>';document.body.style.overflow='hidden';}
+    function closeSearch(){document.getElementById('searchOverlay').classList.remove('open');document.body.style.overflow='';}
+    document.getElementById('searchInput').addEventListener('input',function(){var q=this.value.toLowerCase().trim(),r=document.getElementById('searchResults');if(!q){r.innerHTML='<div class="search-hint">Start typing to search &middot; Press <kbd>ESC</kbd> to close</div>';return;}var m=searchIndex.filter(function(i){var h=(i.title+' '+i.desc+' '+i.keywords+' '+i.tag).toLowerCase();return q.split(/\s+/).every(function(w){return h.includes(w);});});if(!m.length){r.innerHTML='<div class="search-hint">No results for "'+q.replace(/</g,'&lt;')+'"</div>';return;}r.innerHTML=m.map(function(i){return'<a href="'+i.url+'" class="search-result-item" onclick="closeSearch()"><div class="result-tag">'+i.tag+'</div><h4>'+i.title+'</h4><p>'+i.desc+'</p></a>';}).join('');});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSearch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();}});
+    document.getElementById('searchOverlay').addEventListener('click',function(e){if(e.target===this)closeSearch();});
   </script>
 </body>
 </html>
