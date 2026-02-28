@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>The SIS Audit Series (10 Parts) | ERPize - The ERP Magazine</title>
-  <meta name="description" content="A 10-part series on building a systematic audit framework for Student Information Systems and multi-site web portfolios. From documentation to the complete audit script.">
-  <meta name="keywords" content="SIS audit, ERP audit, student information system, web portfolio audit, feature tracking, UATEST, quality assurance, higher education IT, data model, compliance">
+  <meta name="description" content="A 10-part series on building a production T-SQL audit framework for Jenzabar and Student Information Systems. 57 checks, 17 sections, real SQL, one working script at the end.">
+  <meta name="keywords" content="SIS audit, Jenzabar audit, student information system, T-SQL audit script, FERPA compliance, IPEDS readiness, SAP monitoring, higher education IT, data integrity, enrollment validation">
   <meta name="author" content="ERPize">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://erpize.com/audit-series.html">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://erpize.com/audit-series.html">
   <meta property="og:title" content="The SIS Audit Series — 10 Parts | ERPize">
-  <meta property="og:description" content="Build a complete audit system for your SIS portfolio. 10 articles, real code, one working tool at the end.">
+  <meta property="og:description" content="Build a production T-SQL audit script for your Student Information System. 57 checks across enrollment, compliance, grading, SAP, FERPA, IPEDS, and more.">
   <meta property="og:site_name" content="ERPize">
 
   <meta name="theme-color" content="#06b6d4">
@@ -23,11 +23,12 @@
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "The SIS Audit Series — Building a Systematic Audit Framework",
-    "description": "A 10-part series on building a complete audit system for Student Information Systems and multi-site web portfolios.",
+    "headline": "The SIS Audit Series — Building a Production Database Audit Framework",
+    "description": "A 10-part series on building a complete T-SQL audit script for Student Information Systems. 57 checks covering enrollment, compliance, grading, SAP, FERPA, and IPEDS.",
     "author": { "@type": "Organization", "name": "ERPize" },
     "publisher": { "@type": "Organization", "name": "ERPize" },
     "datePublished": "2026-02-27",
+    "dateModified": "2026-02-28",
     "articleSection": "Tutorials"
   }
   </script>
@@ -62,7 +63,7 @@
     .series-hero-sub {
       font-size: 1.15rem;
       color: var(--gray);
-      max-width: 620px;
+      max-width: 640px;
       line-height: 1.8;
       margin-bottom: 2rem;
     }
@@ -103,7 +104,6 @@
       height: 100%;
       background: var(--gradient-1);
       border-radius: 50px;
-      width: 10%;
       transition: width 0.5s ease;
     }
     .progress-label {
@@ -212,6 +212,16 @@
       border: 1px solid rgba(255,255,255,0.1);
     }
 
+    /* SQL Section badges */
+    .episode-sections {
+      display: inline-block;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.35);
+      font-weight: 500;
+      margin-top: 0.4rem;
+      font-family: 'Courier New', monospace;
+    }
+
     /* What You'll Build */
     .outcome-grid {
       display: grid;
@@ -241,6 +251,42 @@
       color: var(--gray);
       line-height: 1.6;
     }
+
+    /* Severity legend */
+    .severity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .severity-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .severity-card .num {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .severity-card .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+    .sev-critical .num { color: #f87171; }
+    .sev-critical .label { color: #f87171; }
+    .sev-warning .num { color: #fbbf24; }
+    .sev-warning .label { color: #fbbf24; }
+    .sev-info .num { color: #60a5fa; }
+    .sev-info .label { color: #60a5fa; }
 
     /* Brands */
     .brands-row {
@@ -322,12 +368,12 @@
     <div class="container">
       <div class="hero-badge">📰 Featured Series — 10 Parts</div>
       <h1>The SIS <span class="gradient-text">Audit Series</span></h1>
-      <p class="series-hero-sub">Build a complete audit framework for your Student Information System portfolio. Ten articles. Real methodology. Working code. By the end, you'll have a systematic way to validate every site, every feature, every link — and the script to automate it.</p>
+      <p class="series-hero-sub">Build a production T-SQL audit script for your Student Information System. Ten articles, each covering a real compliance or data integrity domain — enrollment validation, FERPA, SAP, IPEDS, grading anomalies, referential integrity, and more. By Part 10, you'll have 57 checks running against live Jenzabar tables.</p>
       <div class="series-meta">
         <div class="series-meta-item">📝 <strong>10</strong>&nbsp;articles</div>
-        <div class="series-meta-item">💻 <strong>Working code</strong>&nbsp;each part</div>
-        <div class="series-meta-item">🔧 <strong>57 checks</strong>&nbsp;in the final tool</div>
-        <div class="series-meta-item">📅 <strong>Feb–Apr 2026</strong></div>
+        <div class="series-meta-item">💻 <strong>T-SQL code</strong>&nbsp;each part</div>
+        <div class="series-meta-item">🔍 <strong>57 checks</strong>&nbsp;· 17 sections</div>
+        <div class="series-meta-item">🏛️ <strong>Jenzabar</strong>&nbsp;schema</div>
       </div>
       <div class="series-cta">
         <a href="#episodes" class="btn-primary btn-large">View All Parts ↓</a>
@@ -347,32 +393,53 @@
         <div class="progress-label">New articles published weekly</div>
       </div>
 
-      <!-- What You'll Build -->
+      <!-- Severity Breakdown -->
       <div class="section-header">
+        <div class="section-badge">The script at a glance</div>
+        <h2>57 checks across 17 sections</h2>
+        <p>Every check is classified by severity. The final scorecard tells you exactly where to start.</p>
+      </div>
+      <div class="severity-grid">
+        <div class="severity-card sev-critical">
+          <div class="num">20</div>
+          <div class="label">Critical</div>
+        </div>
+        <div class="severity-card sev-warning">
+          <div class="num">29</div>
+          <div class="label">Warning</div>
+        </div>
+        <div class="severity-card sev-info">
+          <div class="num">8</div>
+          <div class="label">Info</div>
+        </div>
+      </div>
+
+      <!-- What You'll Build -->
+      <div class="section-header" style="margin-top:4rem;">
         <div class="section-badge">What you'll build</div>
-        <h2>A complete audit system</h2>
-        <p>Each article teaches one piece. By Part 10, they all connect into a working tool.</p>
+        <h2>A production-ready audit script</h2>
+        <p>Each article teaches one domain. By Part 10, they assemble into a single executable script.</p>
       </div>
       <div class="outcome-grid">
         <div class="outcome-card">
-          <div class="outcome-icon">📋</div>
-          <h3>UATest Plans</h3>
-          <p>A documented baseline for every site listing every feature, page, and integration point. Your single source of truth.</p>
+          <div class="outcome-icon">🛡️</div>
+          <h3>Compliance Coverage</h3>
+          <p>FERPA data exposure, 1098-T readiness, IPEDS demographic completeness, and SAP/Title IV monitoring — all validated by SQL.</p>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-icon">🔗</div>
+          <h3>Referential Integrity</h3>
+          <p>Orphaned course history, degree records without student masters, broken major codes — the structural cracks that corrupt every downstream report.</p>
         </div>
         <div class="outcome-card">
           <div class="outcome-icon">📊</div>
-          <h3>Feature Matrix</h3>
-          <p>A cross-site tracking system that shows which features exist where — and what's missing, broken, or drifted.</p>
+          <h3>Severity Scorecard</h3>
+          <p>A formatted summary that prints CRITICAL, WARNING, and INFO totals with per-check row counts. Copy-paste into any audit memo.</p>
         </div>
         <div class="outcome-card">
-          <div class="outcome-icon">🔍</div>
-          <h3>Validation Scripts</h3>
-          <p>Code that crawls your portfolio and checks navigation, links, mobile responsiveness, sitemaps, and shared components.</p>
-        </div>
-        <div class="outcome-card">
-          <div class="outcome-icon">📄</div>
-          <h3>Audit Reports</h3>
-          <p>Clean, prioritized findings with severity levels. Not a wall of false positives — actionable issues that matter.</p>
+          <div class="outcome-icon">⚙️</div>
+          <h3>Configurable Execution</h3>
+          <p>Master switch for analysis mode, individual check selectors, trickle throttling for production, and full/curated record toggles.</p>
         </div>
       </div>
     </div>
@@ -386,7 +453,7 @@
         <div style="flex:1;min-width:250px">
           <div style="font-size:.7rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem">Reference Document</div>
           <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:.35rem">SIS Audit Coverage vs. Industry Data Models</h3>
-          <p style="font-size:.88rem;color:var(--gray);line-height:1.6;margin:0">Maps 57 audit checks against the Microsoft Education Accelerator CDM (open-source). Shows what the standard models cover — and the compliance gaps they miss entirely.</p>
+          <p style="font-size:.88rem;color:var(--gray);line-height:1.6;margin:0">Maps all 57 audit checks against the Microsoft Education Accelerator CDM (open-source). Shows what the standard models cover — and the compliance gaps they miss entirely.</p>
         </div>
         <a href="audit-entity-mapping.html" class="btn-primary" style="white-space:nowrap">Read the Mapping →</a>
       </div>
@@ -399,7 +466,7 @@
       <div class="section-header">
         <div class="section-badge">All Episodes</div>
         <h2>The full series</h2>
-        <p>Ten parts, each building on the last. Follow along or binge when it's complete.</p>
+        <p>Ten parts covering every domain in the audit script. Each article includes the T-SQL for its checks.</p>
       </div>
 
       <div class="episodes-list">
@@ -409,7 +476,7 @@
           <div class="episode-num">1</div>
           <div class="episode-body">
             <h3>The Silent Drift Problem</h3>
-            <p>Why multi-site portfolios break without anyone noticing. The gap between what you think is deployed and what's actually deployed. How one navigation change can cascade across 18 sites — and why nobody catches it until a user complains.</p>
+            <p>Why SIS databases decay without anyone noticing. Duplicate records accumulate, orphaned data breaks reports, compliance fields go blank — and nobody catches it until an auditor asks. The case for systematic, automated database auditing.</p>
             <div class="episode-tags">
               <span class="episode-tag">Methodology</span>
               <span class="episode-tag">Problem Statement</span>
@@ -422,13 +489,14 @@
         <div class="episode-card locked">
           <div class="episode-num">2</div>
           <div class="episode-body">
-            <h3>Document Before You Touch</h3>
-            <p>Creating UATest plans as your validation baseline. The template, the process, and the rule: never make a change without knowing what should be there first. Includes the complete UATEST plan template with walkthrough.</p>
+            <h3>Enrollment &amp; Identity Validation</h3>
+            <p>Active students with no course history. Duplicate NAME_MASTER records. Missing and malformed emails. The enrollment checks that catch the most common data entry failures — and the duplicate detection queries (name+DOB, SSN, SOUNDEX) that find merge candidates hiding in plain sight.</p>
             <div class="episode-tags">
-              <span class="episode-tag">Documentation</span>
-              <span class="episode-tag">Template</span>
-              <span class="episode-tag">Process</span>
+              <span class="episode-tag">Enrollment</span>
+              <span class="episode-tag">Duplicates</span>
+              <span class="episode-tag">T-SQL</span>
             </div>
+            <div class="episode-sections">Sections 1 (1.1–1.4) + 19 (19.1–19.3) · 7 checks</div>
           </div>
           <span class="episode-status status-soon">Coming Soon</span>
         </div>
@@ -437,13 +505,14 @@
         <div class="episode-card locked">
           <div class="episode-num">3</div>
           <div class="episode-body">
-            <h3>The Feature Matrix</h3>
-            <p>Tracking what exists across every site and module. Building a cross-site inventory that shows authentication status, shared components, site-specific features, and deployment state at a glance.</p>
+            <h3>Academic Standing &amp; Course Integrity</h3>
+            <p>Students enrolled for a year without declaring a major. Multiple active degree records. Duplicate course enrollments, excessive credit loads, courses not in the catalog, and zero-credit anomalies. The academic backbone checks that registrars need but rarely run.</p>
             <div class="episode-tags">
-              <span class="episode-tag">Tracking</span>
-              <span class="episode-tag">Inventory</span>
-              <span class="episode-tag">Code</span>
+              <span class="episode-tag">Academic</span>
+              <span class="episode-tag">Courses</span>
+              <span class="episode-tag">T-SQL</span>
             </div>
+            <div class="episode-sections">Sections 2 (2.1–2.2) + 3 (3.1–3.4) · 6 checks</div>
           </div>
           <span class="episode-status status-soon">Coming Soon</span>
         </div>
@@ -452,13 +521,14 @@
         <div class="episode-card locked">
           <div class="episode-num">4</div>
           <div class="episode-body">
-            <h3>Navigation Consistency Checks</h3>
-            <p>Why menus diverge and how to catch it programmatically. Parsing HTML to extract nav links, comparing across pages within a site and across sites in a portfolio. The first real audit script.</p>
+            <h3>Grading Anomalies &amp; Term Validation</h3>
+            <p>Historical records with no final grade. Grade changes where PREVIOUS_GRADE tells a different story. Letter grades on dropped courses — a CRITICAL that shouldn't exist. Plus: enrollments in year/term combinations that aren't defined, inactive courses still getting students, and catalog entries nobody has ever taken.</p>
             <div class="episode-tags">
-              <span class="episode-tag">Navigation</span>
-              <span class="episode-tag">Script</span>
-              <span class="episode-tag">HTML Parsing</span>
+              <span class="episode-tag">Grading</span>
+              <span class="episode-tag">Term/Catalog</span>
+              <span class="episode-tag">T-SQL</span>
             </div>
+            <div class="episode-sections">Sections 4 (4.1–4.3) + 5 (5.1–5.3) · 6 checks</div>
           </div>
           <span class="episode-status status-soon">Coming Soon</span>
         </div>
@@ -467,13 +537,14 @@
         <div class="episode-card locked">
           <div class="episode-num">5</div>
           <div class="episode-body">
-            <h3>The Mobile Trap</h3>
-            <p>How <code style="color:var(--accent);">display: none</code> silently kills mobile navigation. Scanning CSS for responsive antipatterns. Checking viewport meta tags, hamburger menu presence, and touch target sizes.</p>
+            <h3>FERPA, SSN &amp; Sensitive Data Exposure</h3>
+            <p>How many records store a full SSN? Are any duplicated across different people? Who's missing a date of birth, and whose DOB is physically impossible? Which students have FERPA restrictions that need to be honored in every downstream system? Plus: 1098-T readiness — students who can't receive tax forms because they're missing SSN or a mailing address.</p>
             <div class="episode-tags">
-              <span class="episode-tag">Mobile</span>
-              <span class="episode-tag">CSS Analysis</span>
-              <span class="episode-tag">Responsive</span>
+              <span class="episode-tag">FERPA</span>
+              <span class="episode-tag">1098-T</span>
+              <span class="episode-tag">Privacy</span>
             </div>
+            <div class="episode-sections">Sections 17 (17.1–17.5) + 18 (18.1–18.2) · 7 checks</div>
           </div>
           <span class="episode-status status-soon">Coming Soon</span>
         </div>
@@ -482,13 +553,14 @@
         <div class="episode-card locked">
           <div class="episode-num">6</div>
           <div class="episode-body">
-            <h3>Cross-Site Link Validation</h3>
-            <p>Dead links between systems are invisible until someone clicks one. Building a link crawler that checks internal links, cross-site links, anchor targets, and webring integrity across the entire portfolio.</p>
+            <h3>SAP &amp; Withdrawal Patterns</h3>
+            <p>Satisfactory Academic Progress is a Title IV requirement — and the data to monitor it is already in your SIS. GPA below 2.0, completion pace below 67%, exceeding 150% maximum time frame. Then: the withdrawal patterns that signal deeper problems — multiple W's in a term, complete term withdrawals that trigger R2T4 refund calculations, and serial withdrawers across 3+ terms.</p>
             <div class="episode-tags">
-              <span class="episode-tag">Links</span>
-              <span class="episode-tag">Crawler</span>
-              <span class="episode-tag">Script</span>
+              <span class="episode-tag">SAP</span>
+              <span class="episode-tag">Title IV</span>
+              <span class="episode-tag">Withdrawals</span>
             </div>
+            <div class="episode-sections">Sections 21 (21.1–21.3) + 23 (23.1–23.3) · 6 checks</div>
           </div>
           <span class="episode-status status-soon">Coming Soon</span>
         </div>
@@ -497,13 +569,15 @@
         <div class="episode-card locked">
           <div class="episode-num">7</div>
           <div class="episode-body">
-            <h3>Shared Component Sync</h3>
-            <p>When 18 sites have 18 versions of the same webring, footer, or analytics tag. Extracting shared components, hashing them, and diffing across sites to find which deployments are out of date.</p>
+            <h3>Degrees, Credits &amp; the Admissions Pipeline</h3>
+            <p>Degrees conferred with fewer than 120 career hours. Graduates still flagged as active. Students enrolled 8+ years without a degree. Credit overloads and below-full-time flags. Transfer credits with suspicious letter grades. Repeated non-repeatable courses. Credit hour mismatches vs. catalog. Missing entrance years and course history that predates admission.</p>
             <div class="episode-tags">
-              <span class="episode-tag">Components</span>
-              <span class="episode-tag">Diffing</span>
-              <span class="episode-tag">Hashing</span>
+              <span class="episode-tag">Degrees</span>
+              <span class="episode-tag">Credits</span>
+              <span class="episode-tag">Admissions</span>
+              <span class="episode-tag">Transfer</span>
             </div>
+            <div class="episode-sections">Sections 22 + 24 + 29 + 30 + 31 + 32 · 14 checks</div>
           </div>
           <span class="episode-status status-soon">Coming Soon</span>
         </div>
@@ -512,13 +586,14 @@
         <div class="episode-card locked">
           <div class="episode-num">8</div>
           <div class="episode-body">
-            <h3>SEO & Sitemap Auditing</h3>
-            <p>Are search engines seeing what you think they're seeing? Validating meta tags, canonical URLs, robots.txt, sitemap.xml entries against actual pages, and checking for the gaps Google Search Console won't tell you about.</p>
+            <h3>Referential Integrity &amp; IPEDS Readiness</h3>
+            <p>The structural checks: STUDENT_CRS_HIST rows with no STUDENT_MASTER, DEGREE_HISTORY orphans, NAME_MASTER without BIOGRAPH_MASTER, major codes that don't exist in MAJOR_MINOR_DEF. Then: IPEDS reporting readiness — missing gender, ethnicity, state, CIP codes, and a 5-year enrollment headcount trend analysis.</p>
             <div class="episode-tags">
-              <span class="episode-tag">SEO</span>
-              <span class="episode-tag">Sitemap</span>
-              <span class="episode-tag">Meta Tags</span>
+              <span class="episode-tag">Referential Integrity</span>
+              <span class="episode-tag">IPEDS</span>
+              <span class="episode-tag">Federal Reporting</span>
             </div>
+            <div class="episode-sections">Sections 26 (26.1–26.4) + 40 (40.1–40.5) · 9 checks</div>
           </div>
           <span class="episode-status status-soon">Coming Soon</span>
         </div>
@@ -527,13 +602,14 @@
         <div class="episode-card locked">
           <div class="episode-num">9</div>
           <div class="episode-body">
-            <h3>The Audit Report</h3>
-            <p>Raw findings are useless without prioritization. Building a report generator that categorizes issues by severity, groups them by site, and produces actionable output — not a 500-line dump of warnings.</p>
+            <h3>Security, Reporting &amp; the Scorecard</h3>
+            <p>Elevated database roles, orphaned users, tables without primary keys. Then: the engineering that makes the script production-ready — the @@ROWCOUNT capture pattern, severity counters, the formatted scorecard, query analysis mode, individual check selectors, and trickle throttling for running against live databases without spiking load.</p>
             <div class="episode-tags">
-              <span class="episode-tag">Reporting</span>
-              <span class="episode-tag">Severity</span>
-              <span class="episode-tag">Output</span>
+              <span class="episode-tag">Security</span>
+              <span class="episode-tag">Scorecard</span>
+              <span class="episode-tag">Architecture</span>
             </div>
+            <div class="episode-sections">Section 20 (20.1–20.3) + v5 features · 3 checks + framework</div>
           </div>
           <span class="episode-status status-soon">Coming Soon</span>
         </div>
@@ -543,12 +619,13 @@
           <div class="episode-num">10</div>
           <div class="episode-body">
             <h3>The Complete Audit Script</h3>
-            <p>Everything assembled into a single tool. All 57 checks. One command. One report. Tested on a live 18-site network. The complete audit script, available at AITSQL.</p>
+            <p>All 57 checks. 17 sections. One script. Configurable execution with @RunAll, @MasterSwitch, @CompleteRecord, and @Trickle. Prints a formatted scorecard with CRITICAL/WARNING/INFO totals. Tested against live Jenzabar production and test databases. Available at AITSQL.</p>
             <div class="episode-tags">
-              <span class="episode-tag">Complete Tool</span>
+              <span class="episode-tag">Complete Script</span>
               <span class="episode-tag">AITSQL</span>
-              <span class="episode-tag">Final Build</span>
+              <span class="episode-tag">Finale</span>
             </div>
+            <div class="episode-sections">All sections · 57 checks · v5</div>
           </div>
           <span class="episode-status status-soon">Finale</span>
         </div>
@@ -562,12 +639,12 @@
     <div class="container">
       <div class="section-header">
         <div class="section-badge">Real-world tested</div>
-        <h2>Built on a live 18-site network</h2>
-        <p>This isn't theory. Every technique in this series was developed by auditing a real portfolio.</p>
+        <h2>Built against a live Jenzabar database</h2>
+        <p>This isn't theory. Every check runs against real tables with real data.</p>
       </div>
 
       <div class="series-quote">
-        <p>"We built 18 sites. They shared a database, a design language, and a webring. After six months, the webring existed in three different versions, four sites had inconsistent navigation, and nobody could say with certainty which sites had which features. So we built an audit tool."</p>
+        <p>"We had 57,000 student records, fifteen years of course history, and no systematic way to know what was broken. Duplicate SSNs sat in production for years. Orphaned degree records corrupted IPEDS submissions. FERPA flags existed but nobody verified downstream systems honored them. So we built an audit script."</p>
         <div class="attr">— The origin of the series</div>
       </div>
 
@@ -580,7 +657,7 @@
         <div class="brand-pill" style="border-color: rgba(6,182,212,0.3); background: rgba(6,182,212,0.04);">
           <div class="icon">⚡</div>
           <h4>AITSQL</h4>
-          <div class="role">The Tool</div>
+          <div class="role">The Script</div>
         </div>
         <div class="brand-pill">
           <div class="icon">🔧</div>
@@ -626,7 +703,7 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.episode-card, .outcome-card, .brand-pill').forEach(el => {
+    document.querySelectorAll('.episode-card, .outcome-card, .brand-pill, .severity-card').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(15px)';
       el.style.transition = 'all 0.4s ease';
@@ -668,7 +745,26 @@
   </style>
   <div class="search-overlay" id="searchOverlay"><div class="search-container"><div class="search-input-wrap"><span class="search-icon">🔍</span><input type="text" class="search-input" id="searchInput" placeholder="Search articles, topics, series..." autocomplete="off"><button class="search-close" onclick="closeSearch()">ESC</button></div><div class="search-results" id="searchResults"><div class="search-hint">Start typing to search &middot; Press <kbd>ESC</kbd> to close</div></div></div></div>
   <script>
-    const searchIndex=[{title:'The SIS Audit Series (10 Parts)',desc:'Build a complete audit framework for your Student Information System portfolio.',tag:'Featured Series',url:'audit-series.html',keywords:'audit sis student information system uatest validation testing portfolio'},{title:'Part 1: The Silent Drift Problem',desc:'Why multi-site portfolios break without anyone noticing.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'drift feature loss navigation inconsistency'},{title:'Part 2: Document Before You Touch',desc:'Creating UATest plans as your validation baseline.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'uatest documentation baseline template'},{title:'Part 3: The Feature Matrix',desc:'Tracking what exists across every site and module.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'feature matrix tracking inventory'},{title:'Part 4: Navigation Consistency Checks',desc:'Why menus diverge and how to catch it programmatically.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'navigation menu consistency html parsing script'},{title:'Part 5: The Mobile Trap',desc:'How display:none silently kills mobile navigation.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'mobile responsive display none css hamburger'},{title:'Part 6: Cross-Site Link Validation',desc:'Building a link crawler for internal and cross-site links.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'links crawler dead broken webring'},{title:'Part 7: Shared Component Sync',desc:'When 18 sites have 18 versions of the same widget.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'shared component sync webring footer hashing'},{title:'Part 8: SEO & Sitemap Auditing',desc:'Validating meta tags, canonical URLs, and sitemap entries.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'seo sitemap meta tags canonical robots'},{title:'Part 9: The Audit Report',desc:'Building a report generator with severity levels.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'report findings severity prioritization'},{title:'Part 10: The Complete Audit Script',desc:'All 57 checks assembled into one tool. One command, one report.',tag:'Audit Series · Finale',url:'audit-series.html#episodes',keywords:'complete tool script aitsql final'},{title:'Mastering SUBSTRING and CHARINDEX in T-SQL',desc:'String manipulation techniques for database developers.',tag:'SQL Tips',url:'index.html#articles',keywords:'sql t-sql substring charindex string parsing'},{title:'Understanding SIS Billing & Charges',desc:'How student billing works in Student Information Systems.',tag:'SIS Platforms',url:'index.html#articles',keywords:'sis charges billing student information system'},{title:'IPEDS Fall Enrollment: Step-by-Step Guide',desc:'Prepare accurate fall enrollment data for federal reporting.',tag:'Compliance',url:'index.html#articles',keywords:'ipeds enrollment federal reporting compliance'},{title:'PowerShell Scripts for SIS Admins',desc:'Ready-to-use PowerShell scripts and templates.',tag:'Automation',url:'index.html#articles',keywords:'powershell automation scripts sis database'},{title:'AITSQL — Audit Tools',desc:'Independent audit tools for web portfolios and SQL Server.',tag:'Partner',url:'https://aiunites.github.io/aitsql-site/',keywords:'aitsql audit tool sql scripts'},{title:'ERPise — ERP Consulting',desc:'SIS implementation, SQL Server, SSIS, SSRS consulting.',tag:'Partner',url:'https://aiunites.github.io/erpise-site/',keywords:'erpise consulting integration sis higher education'},{title:'SIS Audit Coverage vs. Industry Data Models',desc:'Maps 57 audit checks against the Microsoft Education Accelerator CDM. Vendor-neutral entity mapping.',tag:'Reference',url:'audit-entity-mapping.html',keywords:'cdm common data model microsoft entity mapping compliance ferpa ipeds vendor neutral'}];
+    const searchIndex=[
+      {title:'The SIS Audit Series (10 Parts)',desc:'Build a production T-SQL audit script for your Student Information System. 57 checks, 17 sections.',tag:'Featured Series',url:'audit-series.html',keywords:'audit sis student information system sql jenzabar compliance ferpa ipeds sap'},
+      {title:'Part 1: The Silent Drift Problem',desc:'Why SIS databases decay without anyone noticing.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'drift data decay compliance gap silent'},
+      {title:'Part 2: Enrollment & Identity Validation',desc:'Active students with no history, duplicate names, missing emails, merge candidates.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'enrollment identity duplicate name email soundex merge'},
+      {title:'Part 3: Academic Standing & Course Integrity',desc:'No major declared, multiple degrees, duplicate enrollments, excessive credits.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'academic standing major degree course enrollment credits catalog'},
+      {title:'Part 4: Grading Anomalies & Term Validation',desc:'Missing grades, grade changes, grades on drops, invalid year/term combos.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'grading anomaly grade change drop withdrawal term catalog'},
+      {title:'Part 5: FERPA, SSN & Sensitive Data',desc:'SSN exposure, duplicate SSN, missing DOB, FERPA flags, 1098-T readiness.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'ferpa ssn sensitive data privacy 1098-t dob birth compliance'},
+      {title:'Part 6: SAP & Withdrawal Patterns',desc:'Low GPA, completion pace, max time frame, multiple withdrawals, R2T4.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'sap satisfactory academic progress withdrawal title iv gpa completion pace r2t4'},
+      {title:'Part 7: Degrees, Credits & Admissions',desc:'Low-credit degrees, grad still active, transfer anomalies, credit mismatches.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'degree graduation credits transfer repeat admissions entrance pipeline'},
+      {title:'Part 8: Referential Integrity & IPEDS',desc:'Orphaned records, broken foreign keys, missing demographics, CIP codes, headcount trends.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'referential integrity orphan ipeds gender ethnicity cip headcount trend'},
+      {title:'Part 9: Security, Reporting & the Scorecard',desc:'Elevated roles, orphaned users, the @@ROWCOUNT pattern, trickle mode, scorecard output.',tag:'Audit Series',url:'audit-series.html#episodes',keywords:'security roles orphaned users scorecard rowcount trickle master switch production'},
+      {title:'Part 10: The Complete Audit Script',desc:'All 57 checks in one script. Configurable execution. Tested on live Jenzabar.',tag:'Audit Series · Finale',url:'audit-series.html#episodes',keywords:'complete script aitsql 57 checks v5 final production jenzabar'},
+      {title:'Mastering SUBSTRING and CHARINDEX in T-SQL',desc:'String manipulation techniques for database developers.',tag:'SQL Tips',url:'index.html#articles',keywords:'sql t-sql substring charindex string parsing'},
+      {title:'Understanding SIS Billing & Charges',desc:'How student billing works in Student Information Systems.',tag:'SIS Platforms',url:'index.html#articles',keywords:'sis charges billing student information system'},
+      {title:'IPEDS Fall Enrollment: Step-by-Step Guide',desc:'Prepare accurate fall enrollment data for federal reporting.',tag:'Compliance',url:'index.html#articles',keywords:'ipeds enrollment federal reporting compliance'},
+      {title:'PowerShell Scripts for SIS Admins',desc:'Ready-to-use PowerShell scripts and templates.',tag:'Automation',url:'index.html#articles',keywords:'powershell automation scripts sis database'},
+      {title:'AITSQL — Audit Tools',desc:'Independent audit tools for SQL Server and SIS databases.',tag:'Partner',url:'https://aiunites.github.io/aitsql-site/',keywords:'aitsql audit tool sql scripts'},
+      {title:'ERPise — ERP Consulting',desc:'SIS implementation, SQL Server, SSIS, SSRS consulting for higher education.',tag:'Partner',url:'https://aiunites.github.io/erpise-site/',keywords:'erpise consulting integration sis higher education'},
+      {title:'SIS Audit Coverage vs. Industry Data Models',desc:'Maps 57 audit checks against the Microsoft Education Accelerator CDM. Vendor-neutral entity mapping.',tag:'Reference',url:'audit-entity-mapping.html',keywords:'cdm common data model microsoft entity mapping compliance ferpa ipeds vendor neutral'}
+    ];
     function openSearch(){document.getElementById('searchOverlay').classList.add('open');document.getElementById('searchInput').value='';document.getElementById('searchInput').focus();document.getElementById('searchResults').innerHTML='<div class="search-hint">Start typing to search &middot; Press <kbd>ESC</kbd> to close</div>';document.body.style.overflow='hidden';}
     function closeSearch(){document.getElementById('searchOverlay').classList.remove('open');document.body.style.overflow='';}
     document.getElementById('searchInput').addEventListener('input',function(){var q=this.value.toLowerCase().trim(),r=document.getElementById('searchResults');if(!q){r.innerHTML='<div class="search-hint">Start typing to search &middot; Press <kbd>ESC</kbd> to close</div>';return;}var m=searchIndex.filter(function(i){var h=(i.title+' '+i.desc+' '+i.keywords+' '+i.tag).toLowerCase();return q.split(/\s+/).every(function(w){return h.includes(w);});});if(!m.length){r.innerHTML='<div class="search-hint">No results for "'+q.replace(/</g,'&lt;')+'"</div>';return;}r.innerHTML=m.map(function(i){return'<a href="'+i.url+'" class="search-result-item" onclick="closeSearch()"><div class="result-tag">'+i.tag+'</div><h4>'+i.title+'</h4><p>'+i.desc+'</p></a>';}).join('');});
