@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VP15KRLV6P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VP15KRLV6P');
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Write for ERPize | Call for Authors | Submit an ERP Article</title>
+  <meta name="description" content="Write for ERPize — pitch or submit an article about ERP, SIS, SQL, compliance, automation, or higher education technology. Get published and build your professional profile.">
+  <meta name="keywords" content="write for us, submit article, ERP magazine contributor, SIS author, higher education technology writer, call for submissions, guest post ERP">
+  <meta name="author" content="ERPize">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://erpize.com/write-for-us.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://erpize.com/write-for-us.html">
+  <meta property="og:title" content="Write for ERPize | Call for Authors">
+  <meta property="og:description" content="Share your ERP expertise with the ERPize audience. We publish practitioners writing about SIS, SQL, compliance, and enterprise systems.">
+  <meta property="og:image" content="https://erpize.com/images/og-image.png">
+
+  <meta name="theme-color" content="#06b6d4">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✍️</text></svg>">
+
+  <style>
+    :root {
+      --black: #0a0a0b;
+      --white: #fafafa;
+      --accent: #06b6d4;
+      --accent-dark: #0891b2;
+      --accent-glow: rgba(6,182,212,0.4);
+      --gray: #888;
+      --dark-gray: #1a1a1c;
+      --card-bg: #141416;
+      --gradient-1: linear-gradient(135deg, #06b6d4 0%, #10b981 50%, #34d399 100%);
+      --green: #10b981;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font); background: var(--black); color: var(--white); min-height: 100vh; overflow-x: hidden; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── WEBRING ── */
+    .aiunites-bar{position:fixed;top:0;left:0;right:0;z-index:10000;background:linear-gradient(90deg,#0a0a0f,#1a1a2e);border-bottom:1px solid rgba(99,102,241,.3);padding:8px 0;font-size:12px}
+    .aiunites-bar-content{max-width:1400px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:12px;overflow-x:auto;scrollbar-width:none}
+    .aiunites-bar-content::-webkit-scrollbar{display:none}
+    .aiunites-bar a{color:rgba(255,255,255,.7);text-decoration:none;white-space:nowrap;transition:color .2s}
+    .aiunites-bar a:hover{color:#fff}
+    .aiunites-bar-brand{color:#6366f1!important;font-weight:600}
+    .aiunites-bar-brand:hover{color:#818cf8!important}
+    .aiunites-bar-divider{color:rgba(255,255,255,.2)}
+    .wb-arrow{display:none;position:fixed;top:0;width:36px;height:33px;align-items:center;justify-content:center;cursor:pointer;z-index:10001;border:none;padding:0;font-size:16px;line-height:1;color:rgba(255,255,255,.8);transition:color .2s,opacity .2s}
+    .wb-arrow:hover{color:#fff}
+    .wb-left{left:0;background:linear-gradient(90deg,#0d0d1a 55%,transparent)}
+    .wb-right{right:0;background:linear-gradient(270deg,#0d0d1a 55%,transparent)}
+    @media (hover:hover) and (pointer:fine){.wb-arrow{display:flex}}
+    body{padding-top:36px}
+
+    /* ── NAV ── */
+    .nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 3rem; position: sticky; top: 36px; z-index: 900;
+      background: rgba(10,10,11,0.95); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .logo { font-weight: 800; font-size: 1.5rem; }
+    .logo span { background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--gray); transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .btn-primary {
+      background: var(--gradient-1); color: var(--black); padding: 0.7rem 1.5rem;
+      border-radius: 100px; font-weight: 700; font-size: 0.9rem; border: none;
+      cursor: pointer; font-family: var(--font); display: inline-flex;
+      align-items: center; gap: 0.4rem; transition: all 0.2s ease;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px var(--accent-glow); }
+    .btn-secondary {
+      background: var(--dark-gray); color: var(--white); padding: 0.7rem 1.5rem;
+      border-radius: 100px; font-weight: 600; font-size: 0.9rem;
+      border: 1px solid rgba(255,255,255,0.15); cursor: pointer; font-family: var(--font);
+      display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.2s ease;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 5rem 3rem 4rem; position: relative; overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 40%, rgba(6,182,212,0.12) 0%, transparent 55%),
+                  radial-gradient(ellipse at 20% 70%, rgba(16,185,129,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 720px; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.45rem 1rem;
+      background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3);
+      border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem;
+    }
+    .hero h1 { font-size: clamp(2.25rem, 5vw, 3.25rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.25rem; }
+    .gradient-text { background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub { font-size: 1.15rem; color: var(--gray); line-height: 1.7; margin-bottom: 2rem; max-width: 580px; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-stats { display: flex; gap: 2.5rem; margin-top: 3rem; flex-wrap: wrap; }
+    .hero-stat .stat-n { font-size: 2rem; font-weight: 800; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-stat .stat-l { font-size: 0.85rem; color: var(--gray); margin-top: 0.15rem; }
+
+    /* ── PERKS ── */
+    .perks { padding: 5rem 0; background: var(--dark-gray); }
+    .perks-header { text-align: center; margin-bottom: 3rem; }
+    .perks-header h2 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .perks-header p { color: var(--gray); }
+    .section-badge {
+      display: inline-block; padding: 0.4rem 0.9rem;
+      background: rgba(6,182,212,0.1); border-radius: 50px;
+      font-size: 0.75rem; font-weight: 600; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;
+    }
+    .perks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .perk-card {
+      background: var(--card-bg); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; padding: 2rem 1.75rem; transition: all 0.3s ease;
+    }
+    .perk-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .perk-icon { font-size: 2.25rem; margin-bottom: 1rem; }
+    .perk-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .perk-card p { font-size: 0.9rem; color: var(--gray); line-height: 1.6; }
+
+    /* ── GUIDELINES ── */
+    .guidelines { padding: 5rem 0; }
+    .guidelines-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .guide-block h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; }
+    .guide-block h2 .accent { color: var(--accent); }
+    .guide-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+    .guide-list li {
+      display: flex; gap: 0.75rem; font-size: 0.9rem; color: rgba(255,255,255,0.85);
+      line-height: 1.5; padding: 0.85rem 1rem;
+      background: var(--card-bg); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px;
+    }
+    .guide-list li .li-icon { flex-shrink: 0; margin-top: 1px; }
+    .guide-list.bad li { border-color: rgba(244,63,94,0.2); background: rgba(244,63,94,0.04); }
+
+    /* ── TOPICS ── */
+    .topics { padding: 5rem 0; background: var(--dark-gray); }
+    .topics-header { text-align: center; margin-bottom: 3rem; }
+    .topics-header h2 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .topics-header p { color: var(--gray); }
+    .topics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+    .topic-chip {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 1rem 1.25rem; background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.07); border-radius: 14px;
+      font-size: 0.9rem; font-weight: 600; transition: all 0.25s ease;
+    }
+    .topic-chip:hover { border-color: var(--accent); background: rgba(6,182,212,0.06); }
+    .tc-icon { font-size: 1.2rem; }
+    .looking-tag {
+      margin-left: auto; font-size: 0.65rem; font-weight: 700;
+      color: var(--accent); background: rgba(6,182,212,0.12);
+      padding: 0.15rem 0.45rem; border-radius: 4px;
+    }
+
+    /* ── PROCESS ── */
+    .process { padding: 5rem 0; }
+    .process-header { text-align: center; margin-bottom: 3rem; }
+    .process-header h2 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; position: relative; }
+    .process-steps::before {
+      content: ''; position: absolute; top: 27px; left: 12%; right: 12%; height: 2px;
+      background: var(--gradient-1); opacity: 0.25;
+    }
+    .step { text-align: center; }
+    .step-num {
+      width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 1.25rem;
+      background: var(--gradient-1); display: flex; align-items: center;
+      justify-content: center; font-weight: 800; font-size: 1.1rem; color: var(--black);
+      position: relative; z-index: 1;
+    }
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .step p { font-size: 0.875rem; color: var(--gray); line-height: 1.5; }
+
+    /* ── FORM ── */
+    .submit-section { padding: 5rem 0; background: var(--dark-gray); }
+    .submit-inner { max-width: 700px; margin: 0 auto; }
+    .submit-inner h2 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .submit-inner > p { color: var(--gray); margin-bottom: 2.5rem; }
+    .form-group { margin-bottom: 1.4rem; }
+    .form-group label { display: block; font-size: 0.85rem; color: var(--gray); margin-bottom: 0.45rem; font-weight: 600; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 0.9rem 1rem;
+      background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; color: var(--white); font-family: var(--font);
+      font-size: 0.95rem; outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #555; }
+    .form-group select option { background: var(--card-bg); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-hint { font-size: 0.78rem; color: #666; margin-top: 0.35rem; display: block; }
+    .btn-primary.full { width: 100%; font-size: 1rem; padding: 1rem; justify-content: center; }
+    .success-msg {
+      display: none; text-align: center; padding: 2.5rem;
+      background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.3);
+      border-radius: 16px; margin-top: 1rem;
+    }
+    .success-msg .check { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .success-msg h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--green); }
+    .success-msg p { color: var(--gray); font-size: 0.95rem; }
+
+    /* ── COMMUNITY ── */
+    .community { padding: 5rem 0; }
+    .community-inner { max-width: 800px; margin: 0 auto; }
+    .community-inner h2 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+    .community-inner > p { color: var(--gray); margin-bottom: 2.5rem; line-height: 1.7; }
+    .formats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .format-card {
+      background: var(--card-bg); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px; padding: 1.5rem; transition: all 0.25s ease;
+    }
+    .format-card:hover { border-color: var(--accent); }
+    .format-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .format-card p { font-size: 0.875rem; color: var(--gray); line-height: 1.5; }
+    .format-tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 700;
+      background: rgba(6,182,212,0.12); color: var(--accent);
+      padding: 0.2rem 0.5rem; border-radius: 4px; margin-bottom: 0.6rem;
+    }
+
+    /* ── FAQ ── */
+    .faq { padding: 5rem 0; background: var(--dark-gray); }
+    .faq-inner { max-width: 720px; margin: 0 auto; }
+    .faq-inner h2 { font-size: 2rem; font-weight: 700; margin-bottom: 2rem; }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .faq-q {
+      width: 100%; text-align: left; padding: 1.25rem 0; background: none; border: none;
+      color: var(--white); font-family: var(--font); font-size: 1rem; font-weight: 600;
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .faq-q .chevron { color: var(--accent); font-size: 1.1rem; transition: transform 0.2s; flex-shrink: 0; }
+    .faq-q.open .chevron { transform: rotate(180deg); }
+    .faq-a { display: none; padding-bottom: 1.25rem; font-size: 0.95rem; color: var(--gray); line-height: 1.7; }
+    .faq-a.open { display: block; }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 2.5rem 0; text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer .logo { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; display: inline-block; }
+    .footer p { font-size: 0.82rem; color: #666; margin-top: 0.35rem; }
+    .footer a { color: var(--accent); }
+    .footer-links { margin-top: 0.75rem; display: flex; gap: 1.25rem; justify-content: center; }
+    .footer-links a { color: var(--gray); font-size: 0.82rem; }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ── FLOATING ── */
+    .feedback-btn {
+      position: fixed; bottom: 24px; right: 24px; display: flex; align-items: center;
+      gap: 0.5rem; padding: 0.75rem 1.25rem; background: var(--gradient-1);
+      color: var(--black); border-radius: 50px; font-weight: 600; font-size: 0.9rem;
+      box-shadow: 0 4px 20px var(--accent-glow); transition: all 0.3s; z-index: 1000;
+    }
+    .feedback-btn:hover { transform: translateY(-3px); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .perks-grid { grid-template-columns: 1fr 1fr; }
+      .guidelines-inner { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .process-steps::before { display: none; }
+      .formats-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero, .submit-inner, .guidelines-inner, .community-inner, .faq-inner { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .perks-grid, .process-steps { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-cta { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Webring -->
+  <button class="wb-arrow wb-left" id="wb-left" aria-label="Scroll webring left">&#8249;</button>
+  <div class="aiunites-bar"><div class="aiunites-bar-content" id="wb-content">
+    <a href="https://aiunites.github.io/aiunites-site/" class="aiunites-bar-brand">◆ AIUNITES</a>
+    <span class="aiunites-bar-divider">|</span>
+    <a href="https://aiunites.github.io/aizines-app/">AIZines</a>
+    <a href="https://aiunites.github.io/aibyjob-demo/">AIByJob</a>
+    <a href="https://aiunites.github.io/redomy-demo/">Redomy</a>
+    <a href="https://aiunites.github.io/videobate-site/">VideoBate</a>
+    <a href="https://aiunites.github.io/voicestry-site/">VoiceStry</a>
+    <a href="https://aiunites.github.io/furnishthings-site/">FurnishThings</a>
+    <a href="https://aiunites.github.io/bizstry-site/">BizStry</a>
+    <a href="https://aiunites.github.io/aiyhwh-site/">AI YHWH</a>
+    <a href="https://aiunites.github.io/cloudsion-site/">Cloudsion</a>
+    <a href="https://aiunites.github.io/gameatica-site/">Gameatica</a>
+    <a href="https://aiunites.github.io/uptownit-site/">UptownIT</a>
+    <a href="https://aiunites.github.io/inthisworld-site/">InThisWorld</a>
+    <a href="https://aiunites.github.io/erpise-site/">ERPise</a>
+    <a href="https://aiunites.github.io/erpize-site/">ERPize</a>
+    <a href="https://aiunites.github.io/aitsql-site/">AITSQL</a>
+    <a href="https://aiunites.github.io/cosmostheopera-site/">🌌 COSMOS</a>
+  </div></div>
+  <script>(function(){if(location.protocol==='file:'||location.hostname==='localhost'||location.hostname==='127.0.0.1'){document.querySelectorAll('.aiunites-bar a').forEach(a=>{a.href=a.href.replace('https://aiunites.github.io/','../')+'index.html';});}var c=document.getElementById('wb-content'),l=document.getElementById('wb-left'),r=document.getElementById('wb-right');if(!c||!l||!r)return;function upd(){var atL=c.scrollLeft<8,atR=c.scrollLeft>=c.scrollWidth-c.clientWidth-8;l.style.opacity=atL?'0':'1';l.style.pointerEvents=atL?'none':'auto';r.style.opacity=atR?'0':'1';r.style.pointerEvents=atR?'none':'auto';}l.onclick=function(){c.scrollBy({left:-220,behavior:'smooth'});};r.onclick=function(){c.scrollBy({left:220,behavior:'smooth'});};c.addEventListener('scroll',upd,{passive:true});upd();})()</script>
+  <button class="wb-arrow wb-right" id="wb-right" aria-label="Scroll webring right">&#8250;</button>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="index.html" class="logo">ERP<span>ize</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#articles">Articles</a>
+      <a href="audit-series.html">Audit Series</a>
+      <a href="write-for-us.html" class="active">Write for Us</a>
+    </div>
+    <a href="#submit-form" class="btn-primary">✍️ Submit Now</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">✍️ Call for Authors</div>
+      <h1>Your Expertise,<br><span class="gradient-text">Published.</span></h1>
+      <p class="hero-sub">ERPize publishes practitioners — SIS administrators, DBAs, IT directors, and ERP consultants who have real experience and something concrete to say. If you've solved a hard problem, we want to help you document it.</p>
+      <div class="hero-cta">
+        <a href="#submit-form" class="btn-primary">📬 Submit Your Article</a>
+        <a href="#guidelines" class="btn-secondary">Read the Guidelines</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="stat-n">2 wk</div><div class="stat-l">Response time</div></div>
+        <div class="hero-stat"><div class="stat-n">1 link</div><div class="stat-l">Dofollow per article</div></div>
+        <div class="hero-stat"><div class="stat-n">∞</div><div class="stat-l">Permanent archive</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Perks -->
+  <section class="perks">
+    <div class="container">
+      <div class="perks-header">
+        <div class="section-badge">Why Write for ERPize</div>
+        <h2>What Authors Receive</h2>
+        <p>We think practitioners deserve credit for their knowledge.</p>
+      </div>
+      <div class="perks-grid">
+        <div class="perk-card">
+          <div class="perk-icon">🪪</div>
+          <h3>Author Byline & Bio</h3>
+          <p>Your name, title, institution or company, and a one-line bio permanently attached to your article — with a link to your profile, LinkedIn, or site.</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-icon">🔗</div>
+          <h3>Dofollow Author Link</h3>
+          <p>One dofollow link per article — to your consulting page, GitHub repo, LinkedIn, or any professional resource you want to point readers toward.</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-icon">📣</div>
+          <h3>Newsletter Feature</h3>
+          <p>Your article goes out to the ERPize subscriber list when it publishes. We introduce you as the author and give the article a proper send-off.</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-icon">🏆</div>
+          <h3>Professional Credibility</h3>
+          <p>A published ERPize byline on your resume, LinkedIn, or consulting profile. "Published author in the ERP space" opens doors — especially in higher ed IT.</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-icon">📂</div>
+          <h3>Permanent Indexed Archive</h3>
+          <p>Your article stays live indefinitely. It'll rank in search results for queries your colleagues are actively googling — long after it's published.</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-icon">🤝</div>
+          <h3>Editorial Support</h3>
+          <p>We'll help you shape your draft into a clean, well-structured article. You don't need to be a professional writer — you need to know your subject.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guidelines -->
+  <section class="guidelines" id="guidelines">
+    <div class="container">
+      <div class="guidelines-inner">
+        <div class="guide-block">
+          <h2>What We <span class="accent">Publish</span></h2>
+          <ul class="guide-list">
+            <li><span class="li-icon">✅</span> Real solutions to real problems you've encountered on the job</li>
+            <li><span class="li-icon">✅</span> SQL scripts, PowerShell snippets, or config steps with explanation</li>
+            <li><span class="li-icon">✅</span> Case studies (anonymized if needed) with concrete outcomes</li>
+            <li><span class="li-icon">✅</span> Compliance walkthroughs: IPEDS, FERPA, Title IV, state audits</li>
+            <li><span class="li-icon">✅</span> 600–2,000 words — tight, accurate, scannable with clear H2s</li>
+            <li><span class="li-icon">✅</span> Opinions grounded in experience, not marketing material</li>
+            <li><span class="li-icon">✅</span> Vendor comparisons with honest trade-off analysis</li>
+          </ul>
+        </div>
+        <div class="guide-block">
+          <h2>What We <span class="accent">Won't</span> Publish</h2>
+          <ul class="guide-list bad">
+            <li><span class="li-icon">❌</span> Vendor-sponsored or promotional content disguised as editorial</li>
+            <li><span class="li-icon">❌</span> Generic intros that could have been written by anyone</li>
+            <li><span class="li-icon">❌</span> Unattributed claims ("studies show") without linked sources</li>
+            <li><span class="li-icon">❌</span> Content already published elsewhere (first rights required)</li>
+            <li><span class="li-icon">❌</span> Articles that exist solely to add a backlink</li>
+            <li><span class="li-icon">❌</span> Advice that contradicts established FERPA or IPEDS guidance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Topics -->
+  <section class="topics">
+    <div class="container">
+      <div class="topics-header">
+        <div class="section-badge">Topics</div>
+        <h2>What We're Looking For</h2>
+        <p>Tag indicates highest-priority topics right now.</p>
+      </div>
+      <div class="topics-grid">
+        <div class="topic-chip"><span class="tc-icon">🗄️</span> Jenzabar One Tips <span class="looking-tag">WANTED</span></div>
+        <div class="topic-chip"><span class="tc-icon">📊</span> T-SQL for SIS <span class="looking-tag">WANTED</span></div>
+        <div class="topic-chip"><span class="tc-icon">📋</span> IPEDS Reporting <span class="looking-tag">WANTED</span></div>
+        <div class="topic-chip"><span class="tc-icon">🔒</span> FERPA Compliance</div>
+        <div class="topic-chip"><span class="tc-icon">🔧</span> PowerShell Automation <span class="looking-tag">WANTED</span></div>
+        <div class="topic-chip"><span class="tc-icon">📈</span> SSRS Report Design</div>
+        <div class="topic-chip"><span class="tc-icon">🔄</span> SSIS ETL Workflows</div>
+        <div class="topic-chip"><span class="tc-icon">☁️</span> Cloud ERP Migration <span class="looking-tag">WANTED</span></div>
+        <div class="topic-chip"><span class="tc-icon">🎓</span> Higher Ed SIS Strategy</div>
+        <div class="topic-chip"><span class="tc-icon">💰</span> Billing & Aid Processing</div>
+        <div class="topic-chip"><span class="tc-icon">🔍</span> Data Integrity & Audits</div>
+        <div class="topic-chip"><span class="tc-icon">🤖</span> AI in ERP / Higher Ed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process">
+    <div class="container">
+      <div class="process-header">
+        <div class="section-badge">How It Works</div>
+        <h2>From Pitch to Published</h2>
+      </div>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Submit Below</h3>
+          <p>Fill out the form with your pitch or full draft. Outline-only submissions are welcome.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Editorial Review</h3>
+          <p>We review every submission within 2 weeks and respond with feedback or a request to proceed.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Collaborative Edit</h3>
+          <p>We'll work with you to tighten structure and clarity. One round of revisions, then your approval.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>Go Live</h3>
+          <p>Published with your full byline and link. Announced to the ERPize subscriber list.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Formats -->
+  <section class="community">
+    <div class="container">
+      <div class="community-inner">
+        <h2>Article Formats We Accept</h2>
+        <p>You don't have to write a full essay. Here are the formats we publish most often — pick the one that fits what you know.</p>
+        <div class="formats-grid">
+          <div class="format-card">
+            <div class="format-tag">TUTORIAL</div>
+            <h3>Step-by-Step Guide</h3>
+            <p>Walk readers through solving a specific problem — with SQL, PowerShell, or config steps. Numbered, reproducible, and real.</p>
+          </div>
+          <div class="format-card">
+            <div class="format-tag">CASE STUDY</div>
+            <h3>Before/After Problem Story</h3>
+            <p>What was broken, what you tried, what finally worked, and what the outcome was. Anonymized institutions are fine.</p>
+          </div>
+          <div class="format-card">
+            <div class="format-tag">REFERENCE</div>
+            <h3>Code Snippet + Explanation</h3>
+            <p>A useful SQL query, SSRS expression, or PowerShell script with a paragraph explaining when and why to use it.</p>
+          </div>
+          <div class="format-card">
+            <div class="format-tag">OPINION</div>
+            <h3>Practitioner Take</h3>
+            <p>Your honest view on a vendor decision, migration risk, or compliance grey area — grounded in real-world experience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Submit Form -->
+  <section class="submit-section" id="submit-form">
+    <div class="container">
+      <div class="submit-inner">
+        <h2>Submit Your Pitch or Draft</h2>
+        <p>Pitches, outlines, and complete drafts all welcome. We'll let you know next steps within 2 weeks.</p>
+
+        <form id="authorForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeQUi49AdTBRjetz5MDFQgMIkm9-vOMb_ARKwYEz41j_Nfiwg/formResponse" method="POST" target="hidden_iframe" onsubmit="handleSubmit()">
+          <input type="hidden" name="entry.2053726945" value="ERPize Write for Us">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-name">Your Name *</label>
+              <input type="text" id="f-name" name="entry.1234567890" placeholder="Alex Johnson" required>
+            </div>
+            <div class="form-group">
+              <label for="f-email">Work Email *</label>
+              <input type="email" id="f-email" name="entry.904300305" placeholder="alex@university.edu" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-role">Your Role / Title</label>
+              <input type="text" id="f-role" name="entry.888888888" placeholder="e.g. SIS Administrator, DBA, IT Director">
+            </div>
+            <div class="form-group">
+              <label for="f-org">Institution / Organization</label>
+              <input type="text" id="f-org" name="entry.999999999" placeholder="e.g. State University (optional to anonymize)">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="f-title">Article Title or Working Title *</label>
+            <input type="text" id="f-title" name="entry.111111111" placeholder="e.g. Catching Duplicate Aid Awards Before IPEDS Submission with T-SQL" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-topic">Topic Area *</label>
+              <select id="f-topic" name="entry.222222222" required>
+                <option value="">Select a topic...</option>
+                <option>Jenzabar One</option>
+                <option>SQL / T-SQL</option>
+                <option>IPEDS Compliance</option>
+                <option>FERPA Compliance</option>
+                <option>PowerShell Automation</option>
+                <option>SSRS / Reporting</option>
+                <option>SSIS / ETL</option>
+                <option>Cloud ERP Migration</option>
+                <option>Higher Ed SIS Strategy</option>
+                <option>Billing & Aid Processing</option>
+                <option>Data Integrity / Auditing</option>
+                <option>AI in ERP / Higher Ed</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="f-stage">What Are You Submitting? *</label>
+              <select id="f-stage" name="entry.333333333" required>
+                <option value="">Select...</option>
+                <option>Pitch / abstract only</option>
+                <option>Outline (sections listed)</option>
+                <option>Partial draft (50%+ written)</option>
+                <option>Complete draft (ready to review)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="f-abstract">Abstract / Summary *</label>
+            <textarea id="f-abstract" name="entry.444444444" rows="4" placeholder="In 2–5 sentences: what problem does this article solve, who is the audience (SIS admins, DBAs, compliance staff), and what does the reader walk away knowing?" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="f-sample">Draft or Sample Link</label>
+            <input type="text" id="f-sample" name="entry.555555555" placeholder="Google Doc URL (set to 'Anyone with link can view')">
+            <span class="form-hint">Optional but strongly encouraged. Include code snippets, SQL, or PowerShell in the doc if applicable.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="f-bio">One-Line Professional Bio</label>
+            <input type="text" id="f-bio" name="entry.666666666" placeholder="e.g. Jenzabar DBA with 12 years in higher ed SIS administration.">
+          </div>
+
+          <div class="form-group">
+            <label for="f-link">Author / Professional Link</label>
+            <input type="url" id="f-link" name="entry.777777777" placeholder="LinkedIn, consulting site, or GitHub">
+            <span class="form-hint">This is the dofollow link we'll attach to your byline.</span>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn-primary full">📬 Submit to ERPize</button>
+          </div>
+        </form>
+
+        <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+        <div class="success-msg" id="successMsg">
+          <div class="check">✅</div>
+          <h3>Submission received!</h3>
+          <p>We review every submission personally and will respond within 2 weeks. Thank you for contributing your expertise to the ERPize community.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="container">
+      <div class="faq-inner">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Do you pay contributors? <span class="chevron">▾</span></button>
+          <div class="faq-a">ERPize is in its early publishing phase and does not currently pay per article. What we offer is bylines, professional links, newsletter amplification, and permanent archiving. As the platform grows, we plan to introduce a paid contributor program — early authors will be first in line.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Can I include SQL code or PowerShell scripts? <span class="chevron">▾</span></button>
+          <div class="faq-a">Yes — and we encourage it. Practical code makes articles dramatically more useful and more likely to rank in search. Include scripts inline with clear explanation of what each section does. Avoid including anything that contains real production data, student records, or institution-specific credentials.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Can I write about a specific vendor like Jenzabar or Ellucian? <span class="chevron">▾</span></button>
+          <div class="faq-a">Yes. ERPize covers real products used in real institutions. We publish vendor-specific tutorials, comparisons, and critiques — but they must be editorially independent. Vendor-sponsored articles are not published without clear disclosure.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Do I need to anonymize my institution? <span class="chevron">▾</span></button>
+          <div class="faq-a">You can if you prefer, and we'll respect that. Many authors are comfortable naming their institution, which adds credibility. If a case study involves data anomalies, compliance issues, or vendor problems, anonymizing is wise and we can help you do that cleanly.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">I'm not a professional writer. Is that okay? <span class="chevron">▾</span></button>
+          <div class="faq-a">Absolutely. ERPize readers are ERP professionals, not literary critics. They want accurate, practical information written by someone who knows the subject — not polished prose. We'll work with you on structure and clarity. Your job is to know the material.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <a href="index.html" class="logo">ERP<span>ize</span></a>
+      <p>© 2026 ERPize. A product of <a href="https://aiunites.github.io/aiunites-site">AIUNITES</a></p>
+      <div class="footer-links">
+        <a href="https://aiunites.github.io/aiunites-site/legal.html#privacy">Privacy</a>
+        <a href="https://aiunites.github.io/aiunites-site/legal.html#terms">Terms</a>
+        <a href="https://erpise.com" target="_blank">ERPise Consulting</a>
+        <a href="index.html">← Back to ERPize</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSeQUi49AdTBRjetz5MDFQgMIkm9-vOMb_ARKwYEz41j_Nfiwg/viewform?usp=pp_url&entry.2053726945=ERPize" target="_blank" class="feedback-btn">💬 Help / Feedback</a>
+
+  <script>
+    function handleSubmit() {
+      setTimeout(function() {
+        document.getElementById('authorForm').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      }, 800);
+    }
+    function toggleFaq(btn) {
+      btn.classList.toggle('open');
+      btn.nextElementSibling.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
