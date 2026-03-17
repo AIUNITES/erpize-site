@@ -77,16 +77,18 @@
   <!-- Navigation -->
   <nav class="nav">
     <a href="#" class="logo">ERP<span>ize</span></a>
-    <div class="nav-links">
-      <a href="#articles">Articles</a>
+    <div class="nav-links" id="ez-nav">
+      <a href="#articles" onclick="ezClose()">Articles</a>
       <a href="compare.html" style="font-weight:600;color:#06b6d4;">⚖️ Compare ERP</a>
-      <a href="audit-series.html">Audit Series</a>
-      <a href="#categories">Topics</a>
-      <a href="#newsletter">Subscribe</a>
+      <a href="audit-series.html" onclick="ezClose()">Audit Series</a>
+      <a href="#categories" onclick="ezClose()">Topics</a>
+      <a href="#newsletter" onclick="ezClose()">Subscribe</a>
       <a href="write-for-us.html" style="font-weight:600;color:#06b6d4;">✍️ Write for Us</a>
-      <a href="#" id="searchToggle" onclick="event.preventDefault();openSearch()" style="display:inline-flex;align-items:center;gap:4px;">🔍 Search</a>
+      <a href="#" id="searchToggle" onclick="event.preventDefault();openSearch();ezClose()" style="display:inline-flex;align-items:center;gap:4px;">🔍 Search</a>
     </div>
+    <button class="nav-hamburger" id="ez-hbg" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('ez-nav').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>
+  <script>function ezClose(){document.getElementById('ez-nav').classList.remove('open');document.getElementById('ez-hbg').classList.remove('open');}</script>
 
   <!-- Hero Section -->
   <section class="hero">
