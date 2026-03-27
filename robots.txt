@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://aiunites.github.io/erpize-site/sitemap.xml
+Sitemap: https://erpize.com/sitemap.xml
